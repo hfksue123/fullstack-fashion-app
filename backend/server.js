@@ -42,4 +42,6 @@ app.use("/api/admin/users", adminRoutes);
 app.use("/api/admin/products", productAdminRoutes);
 app.use("/api/admin/orders", orderAdminRoutes);
 
+console.log("Rabbit API backend is ready!");
+
 module.exports = app;
