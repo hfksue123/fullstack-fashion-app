@@ -157,13 +157,12 @@
 
 <!-- 10. Deploy Vercel -->
 - Tạo 2 file vercel.json trong /backend và /frontend và 1 file .gitignore ở thư mục gốc
+- /backend: Cài đặt Vercel CLI và deploy: `npm install -g vercel` && `vercel --prod`
+- /frontend: Deploy với github và import vào Vercel, chọn Root Directory là /frontend và thêm các biến môi trường trong /frontend/.env vào mục Environment Variables vì mình k up file này lên github (Lưu ý: với VITE_BACKEND_URL, bạn cần deploy backend trước lên vercel, sau đó thì lấy link app của backend để bỏ vào biến môi trường này thay vì localhost:9000 như trên máy local. Môt lưu ý nhỏ nữa là hãy xóa "/" ở cuối link để tránh lỗi double "//").
 - Tại thư mục gốc gõ:
 > git init
 > git add .
+> git remote add origin https://github.com/baosu123/fashion-website.git
 > git commit -m "first commit"
 > git branch -M main
-> git remote add origin https://github.com/baosu123/fashion-website.git
 > git push -u origin main
-
-- Lên trang web vercel import github repo vừa rồi và chọn Root Directory là /backend
-- Thêm các biến môi trường trong /backend/.env vào mục Environment Variables vì mình k up file này lên github.
