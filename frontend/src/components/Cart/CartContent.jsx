@@ -54,7 +54,8 @@ const CartContent = ({ cart, userId, guestId }) => {
                       product.color
                     )
                   }
-                  className="border rounded px-2 py-1 text-xl font-medium"
+                  disabled={product.quantity <= 1}
+                  className="border rounded px-2 py-1 text-xl font-medium disabled:opacity-50"
                 >
                   -
                 </button>

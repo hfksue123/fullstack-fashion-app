@@ -11,8 +11,10 @@ const CollectionPage = () => {
   //Redux
   const { collection } = useParams();
   const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || "";
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((state) => state.products);
+  const productCount = products.length;
   const queryParams = Object.fromEntries([...searchParams]);
 
   const sidebarRef = useRef(null);
@@ -45,8 +47,6 @@ const CollectionPage = () => {
     };
   }, []);
 
-
-
   return (
     <div className="flex flex-col lg:flex-row">
       {/* Mobile Filter button */}
@@ -67,13 +67,34 @@ const CollectionPage = () => {
       </div>
 
       <div className="flex-grow p-4">
-        <h2 className="text-2xl uppercase mb-4">All Collections</h2>
+        {/* Header with Search Result and Sort Option */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 max-sm:gap-5">
+          {/* Title + Result count */}
+          <div>
+            <h2 className="text-2xl uppercase">All Collections</h2>
+            {searchTerm && (
+              <p className="text-sm text-gray-500">
+                {productCount === 0 ? (
+                  <>
+                    No results for "<span className="italic">{searchTerm}</span>
+                    "
+                  </>
+                ) : (
+                  <>
+                    Results for "<span className="italic">{searchTerm}</span>" |{" "}
+                    {productCount} result{productCount !== 1 && "s"}
+                  </>
+                )}
+              </p>
+            )}
+          </div>
 
-        {/* Sort Options */}
-        <SortOption />
+          {/* Sort Option */}
+          <SortOption />
+        </div>
 
         {/* Product Grid */}
-        <ProductGrid products={products} loading={loading} error={error}/>
+        <ProductGrid products={products} loading={loading} error={error} />
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOrderDetails } from "../redux/slices/orderSlice";
+import dayjs from "dayjs";
+
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -29,7 +31,7 @@ if (error) return <p>Error: {error}</p>
                 Order ID: {orderDetails._id}
               </h3>
               <p className="text-gray-500">
-                {new Date(orderDetails.createdAt).toLocaleDateString()}
+              {dayjs(orderDetails.createdAt).format("DD/MM/YYYY hh:mm A")}
               </p>
             </div>
             <div className="flex flex-col items-start sm:items-end mt-4 sm:mt-0">

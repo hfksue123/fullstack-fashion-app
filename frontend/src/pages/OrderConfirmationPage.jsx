@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearCart } from '../redux/slices/cartSlice';
+import { clearCart } from "../redux/slices/cartSlice";
 
 const OrderConfirmationPage = () => {
   //Redux
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {checkout} = useSelector(state => state.checkout);
-//Clear cart when the order is confirmed
-useEffect(() => {
-  if (checkout&&checkout._id){
-    dispatch(clearCart());
-    localStorage.removeItem("cart");
-  } else {
-    navigate("/my-orders")
-  }
-},[checkout,dispatch,navigate]);
-const calculateEstimatedDelivery = (createAt) => {
+  const { checkout } = useSelector((state) => state.checkout);
+  //Clear cart when the order is confirmed
+  useEffect(() => {
+    if (checkout && checkout._id) {
+      dispatch(clearCart());
+      localStorage.removeItem("cart");
+    } else {
+      navigate("/order-confirmation");
+    }
+  }, [checkout, dispatch, navigate]);
+  const calculateEstimatedDelivery = (createAt) => {
     const orderDate = new Date(createAt);
-    orderDate.setDate(orderDate.getDate()+10); // 10days
+    orderDate.setDate(orderDate.getDate() + 10); // 10days
     return orderDate.toLocaleDateString();
-}
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white">
@@ -37,7 +37,10 @@ const calculateEstimatedDelivery = (createAt) => {
                 Order ID: {checkout._id}
               </h2>
               <p className="text-gray-500">
-                Order date: {new Date(checkout.createAt).toLocaleDateString()}
+                Order date:{" "}
+                {checkout.createAt
+                  ? new Date(checkout.createAt).toLocaleDateString()
+                  : "N/A"}
               </p>
             </div>
             {/* Estimated Delivery Date */}
@@ -98,6 +101,6 @@ const calculateEstimatedDelivery = (createAt) => {
       )}
     </div>
   );
-}
+};
 
-export default OrderConfirmationPage
+export default OrderConfirmationPage;

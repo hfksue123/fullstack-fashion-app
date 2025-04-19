@@ -13,6 +13,7 @@
 > npm install react-icons --save
 > npm install sonner
 > npm install react-redux @reduxjs/toolkit axios
+> npm install dayjs
 
 - Cấu trúc file Checkout để thanh toán.
 
@@ -153,7 +154,7 @@
 - UserManagement.jsx: giao diện Tab quản lý các User trong AdminPanel
 - OrderManagement.jsx: giao diện Tab quản lý các Order trong AdminPanel (orderAdminRoutes.js + adminOrderSlice.js)
 - ProductManagement.jsx: giao diện Tab quản lý các Product trong AdminPanel (productRoutes.js + productAdminSlice.js)
-- EditProductPage.jsx: giao diện Tab Edit Product sẵn có trong Admin Panel (ProductManagement.jsx)
+- EditProductPage.jsx: giao diện Tab Edit Product sẵn có trong Admin Panel (ProductManagement.jsx+productSlice.js)
 
 <!-- 10. Deploy Vercel -->
 - Tạo 2 file vercel.json trong /backend và /frontend và 1 file .gitignore ở thư mục gốc

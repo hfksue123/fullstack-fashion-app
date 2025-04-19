@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchAdminProducts } from "./../redux/slices/adminProductSlice";
 import { fetchAllOrders } from "./../redux/slices/adminOrderSlice";
+import { fetchAllUsers } from "../redux/slices/adminUserSlice";
 
 const AdminHomePage = () => {
   const dispatch = useDispatch();
+
   const {
     products,
     loading: productsLoading,
     error: productsError,
   } = useSelector((state) => state.adminProducts);
+
   const {
     orders,
     totalOrders,
@@ -19,22 +22,32 @@ const AdminHomePage = () => {
     error: ordersError,
   } = useSelector((state) => state.adminOrders);
 
+  const {
+    users,
+    loading: usersLoading,
+    error: usersError,
+  } = useSelector((state) => state.adminUsers);
+
   useEffect(() => {
     dispatch(fetchAdminProducts());
     dispatch(fetchAllOrders());
+    dispatch(fetchAllUsers());
   }, [dispatch]);
 
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
-      {productsLoading || ordersLoading ? (
+
+      {productsLoading || ordersLoading || usersLoading ? (
         <p>Loading...</p>
       ) : productsError ? (
         <p className="text-red-500">Error: {productsError}</p>
       ) : ordersError ? (
         <p className="text-red-500">Error: {ordersError}</p>
+      ) : usersError ? (
+        <p className="text-red-500">Error: {usersError}</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="p-4 shadow-md rounded-lg">
             <h2 className="text-xl font-semibold">Revenue</h2>
             <p className="text-2xl">${totalSales.toFixed(2)}</p>
@@ -54,6 +67,13 @@ const AdminHomePage = () => {
               className="text-blue-500 hover:underline"
             >
               Manage Products
+            </Link>
+          </div>
+          <div className="p-4 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold">Total Users</h2>
+            <p className="text-2xl">{users.length}</p>
+            <Link to="/admin/users" className="text-blue-500 hover:underline">
+              Manage Users
             </Link>
           </div>
         </div>
@@ -82,7 +102,6 @@ const AdminHomePage = () => {
                     <td className="p-4">
                       {order.user ? order.user.name : "Unknown User"}
                     </td>
-
                     <td className="p-4">{order.totalPrice.toFixed(2)}</td>
                     <td className="p-4">{order.status}</td>
                   </tr>

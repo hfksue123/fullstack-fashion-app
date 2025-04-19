@@ -39,7 +39,7 @@ const App = () => {
               path="collections/:collection"
               element={<CollectionPage />}
             />
-            <Route path="collections/:id" element={<ProductDetails />} />
+            <Route path="product/:id" element={<ProductDetails />} />
             <Route path="checkout" element={<Checkout />} />
             <Route
               path="order-confirmation"
@@ -47,6 +47,7 @@ const App = () => {
             />
             <Route path="order/:id" element={<OrderDetailsPage />} />
             <Route path="my-orders" element={<MyOrdersPage />} />
+
           </Route>
           <Route
             path="/admin"

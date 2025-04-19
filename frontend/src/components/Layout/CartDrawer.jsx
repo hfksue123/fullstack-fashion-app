@@ -8,6 +8,9 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const { user, guestId } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
   const userId = user ? user._id : null;
+  const totalPrice = cart.products.reduce((acc, product) => {
+    return acc + product.price * product.quantity;
+  }, 0);
 
   const handleCheckout = () => {
     toggleCartDrawer();
@@ -41,22 +44,28 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
         {/* Cart items */}
       </div>
 
+      {/* Total Price */}
+      <p className="text-center text-gray-600 font-semibold mt-4">
+        Total: ${totalPrice.toLocaleString()}
+      </p>
+
       {/* Check Out button fixed at bottom*/}
       <div className="p-4 bg-white sticky bottom-0">
-      {cart && cart?.products?.length > 0&&(
-        <>
-        <button
-          onClick={handleCheckout}
-          className="w-full bg-grayColor text-white py-3 rounded-lg font-semibold
+        {cart && cart?.products?.length > 0 && (
+          <>
+            <button
+              onClick={handleCheckout}
+              className="w-full bg-grayColor text-white py-3 rounded-lg font-semibold
         hover:bg-gray-800 hoverEffect"
-        >
-          Checkout
-        </button>
-        <p className="text-xs tracking-tighter text-gray-500 mt-2 text-center">
-          Shipping, taxes, and discount codes will be calculated at checkout.
-        </p>
-        </>
-      )}
+            >
+              Checkout
+            </button>
+            <p className="text-xs tracking-tighter text-gray-500 mt-2 text-center">
+              Shipping, taxes, and discount codes will be calculated at
+              checkout.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

@@ -149,6 +149,25 @@ router.delete("/:id", protect, admin, async (req, res) => {
   }
 });
 
+//@route DELETE /api/products/:id/image
+//@desc Remove a specific image from a product
+//@access Private/Admin
+router.delete('/:id/image', protect, admin, async (req, res) => {
+  try {
+    const { imageUrl } = req.body;
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+
+    product.images = product.images.filter((img) => img !== imageUrl);
+    await product.save();
+    res.json({ message: 'Image removed', images: product.images });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+
 //@route GET /api/products
 //@desc Get all products with optional query filters
 //@access Public

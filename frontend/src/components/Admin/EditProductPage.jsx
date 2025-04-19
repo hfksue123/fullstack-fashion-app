@@ -71,6 +71,13 @@ const EditProductPage = () => {
     }
   };
 
+  const handleRemoveImage = (indexToRemove) => {
+    setProductData((prevData) => ({
+      ...prevData,
+      images: prevData.images.filter((_, idx) => idx !== indexToRemove),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProduct({ id, productData }));
@@ -185,18 +192,28 @@ const EditProductPage = () => {
         <div className="mb-6">
           <label className="block font-semibold mb-2">Upload Image</label>
           <input type="file" onChange={handleImageUpload} />
-          <div className="flex gap-4 mt-4">
+
+          <div className="flex flex-wrap gap-4 mt-4">
             {productData.images.map((image, index) => (
-              <div key={index}>
+              <div key={index} className="relative group">
                 <img
                   src={image.url}
                   alt={image.altText || "Product Image"}
-                  className="w-20 h-20 object-cover rounded-md "
+                  className="w-20 h-20 object-cover rounded-md"
                 />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center opacity-80 hover:opacity-100"
+                  title="Remove"
+                >
+                  x
+                </button>
               </div>
             ))}
           </div>
         </div>
+
         {/* Update Button */}
         <button
           type="submit"

@@ -4,6 +4,7 @@ import {
   FaSignOutAlt,
   FaHome,
   FaUser,
+  FaStore,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -13,11 +14,13 @@ import { clearCart } from "../../redux/slices/cartSlice";
 const AdminSidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(logout());
     dispatch(clearCart());
     navigate("/");
   };
+
   return (
     <div className="p-6">
       <div className="mb-6">
@@ -40,6 +43,7 @@ const AdminSidebar = () => {
           <FaHome />
           <span>General</span>
         </NavLink>
+
         {/* Users */}
         <NavLink
           to="/admin/users"
@@ -52,6 +56,7 @@ const AdminSidebar = () => {
           <FaUser />
           <span>Users</span>
         </NavLink>
+
         {/* Product */}
         <NavLink
           to="/admin/products"
@@ -64,6 +69,7 @@ const AdminSidebar = () => {
           <FaBoxOpen />
           <span>Products</span>
         </NavLink>
+
         {/* Orders */}
         <NavLink
           to="/admin/orders"
@@ -76,9 +82,10 @@ const AdminSidebar = () => {
           <FaClipboardList />
           <span>Orders</span>
         </NavLink>
-        {/* Shop */}
       </nav>
-      <div className="mt-6">
+
+      <div className="mt-6 space-y-2">
+        {/* Logout */}
         <button
           onClick={handleLogout}
           className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded flex items-center justify-center space-x-2"
@@ -86,6 +93,15 @@ const AdminSidebar = () => {
           <FaSignOutAlt />
           <span>Logout</span>
         </button>
+
+        {/* Back to Shop */}
+        <Link
+          to="/"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex items-center justify-center space-x-2"
+        >
+          <FaStore />
+          <span>Back to Shop</span>
+        </Link>
       </div>
     </div>
   );

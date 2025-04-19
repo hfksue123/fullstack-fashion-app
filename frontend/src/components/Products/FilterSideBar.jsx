@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { RxReset } from "react-icons/rx";
 
 const FilterSideBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,45 +42,74 @@ const FilterSideBar = () => {
   }, [searchParams]);
 
   const handleFilterChange = (e) => {
-    const {name,value,checked,type}=e.target;
-    let newFilters = {...filters};
-    if (type==="checkbox"){
-        if(checked) {
-            newFilters[name] = [...(newFilters[name]||[]),value];
-        } else {
-            newFilters[name] = newFilters[name].filter((item)=>item!==value);
-        } 
+    const { name, value, checked, type } = e.target;
+    let newFilters = { ...filters };
+    if (type === "checkbox") {
+      if (checked) {
+        newFilters[name] = [...(newFilters[name] || []), value];
+      } else {
+        newFilters[name] = newFilters[name].filter((item) => item !== value);
+      }
     } else {
-        newFilters[name] = value;
-    } setFilters(newFilters);
+      newFilters[name] = value;
+    }
+    setFilters(newFilters);
     updateURLParams(newFilters);
   };
 
   const updateURLParams = (newFilters) => {
     const params = new URLSearchParams();
-    Object.keys(newFilters).forEach((key)=>{
-        if(Array.isArray(newFilters[key])&&newFilters[key].length>0){
-            params.append(key, newFilters[key].join(","));
-        } else if (newFilters[key]) {
-            params.append(key, newFilters[key])
-        }
+    Object.keys(newFilters).forEach((key) => {
+      if (Array.isArray(newFilters[key]) && newFilters[key].length > 0) {
+        params.append(key, newFilters[key].join(","));
+      } else if (newFilters[key]) {
+        params.append(key, newFilters[key]);
+      }
     });
     setSearchParams(params);
     navigate(`?${params.toString()}`); //category
-  }
+  };
 
   const handlePriceRangeChange = (e) => {
     const newPrice = e.target.value;
-    setPriceRange([0,newPrice])
+    setPriceRange([0, newPrice]);
     const newFilters = { ...filters, minPrice: 0, maxPrice: newPrice };
-    setFilters(filters)
+    setFilters(filters);
     updateURLParams(newFilters);
+  };
 
-  }
+  // Reset filters button
+  const handleResetFilters = () => {
+    const defaultFilters = {
+      category: "",
+      gender: "",
+      color: "",
+      size: [],
+      material: [],
+      brand: [],
+      minPrice: 0,
+      maxPrice: 100,
+    };
+    setFilters(defaultFilters);
+    setPriceRange([0, 100]);
+    setSearchParams({});
+    navigate("?");
+  };
 
   return (
     <div className="p-4">
-      <h3 className="text-xl font-medium text-gray-800 mb-4">Filter</h3>
+      {/* Header and Reset Button */}
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-xl font-semibold text-gray-800">Filter</h3>
+        <button
+          onClick={handleResetFilters}
+          className="flex items-center gap-1 px-2 py-1 rounded-md text-sm text-blue-600 hover:text-white hover:bg-blue-600 transition duration-150"
+        >
+          <RxReset className="text-base" />
+          <span>Reset</span>
+        </button>
+      </div>
+
       {/* Category Filter */}
       <div className="mb-6">
         <label className="block text-gray-600 font-medium mb-2">Category</label>

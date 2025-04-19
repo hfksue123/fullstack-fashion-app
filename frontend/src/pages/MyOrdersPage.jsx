@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserOrders } from './../redux/slices/orderSlice';
+import dayjs from "dayjs";
 
 const MyOrdersPage = () => {
     const navigate = useNavigate();
@@ -54,8 +55,7 @@ const MyOrdersPage = () => {
                     #{order._id}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
-                    {new Date(order.createAt).toLocaleDateString()}{" "}
-                    {new Date(order.createAt).toLocaleTimeString()}
+                    {dayjs(order.createdAt).format("DD/MM/YYYY hh:mm A")}
                   </td>
                   <td className="py-2 px-2 sm:py-4 sm:px-4">
                     {order.shippingAddress
