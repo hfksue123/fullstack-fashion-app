@@ -1,16 +1,15 @@
 {
-    "version": 2,
-    "name":"backend",
-    "builds":[
-        {
-            "src":"./server.ts",
-            "use":"@vercel/node"
-        }
-    ],
-    "routes":[
-        {
-            "src":"/(.*)",
-            "dest":"/server.ts"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.ts"
+    }
+  ]
 }

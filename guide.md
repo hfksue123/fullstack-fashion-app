@@ -159,3 +159,11 @@
 - Tạo 2 file vercel.json trong /backend và /frontend và 1 file .gitignore ở thư mục gốc
 - Tại thư mục gốc gõ:
 > git init
+> git add .
+> git commit -m "first commit"
+> git branch -M main
+> git remote add origin https://github.com/baosu123/fashion-website.git
+> git push -u origin main
+
+- Lên trang web vercel import github repo vừa rồi và chọn Root Directory là /backend
+- Thêm các biến môi trường trong /backend/.env vào mục Environment Variables vì mình k up file này lên github.
