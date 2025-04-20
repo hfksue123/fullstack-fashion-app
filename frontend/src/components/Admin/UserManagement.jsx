@@ -20,10 +20,10 @@ const UserManagement = () => {
   }, [user, navigate]);
 
   useEffect(() => {
-    if (user&&user.role==="admin") {
-      dispatch(fetchUsers())
+    if (user && user.role === "admin") {
+      dispatch(fetchUsers());
     }
-  },[dispatch,user]);
+  }, [dispatch, user]);
 
   const [formData, setFormData] = useState({
     name: "",

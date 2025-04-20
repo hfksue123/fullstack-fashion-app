@@ -16,4 +16,22 @@ router.get("/", protect, admin, async (req, res) => {
   }
 });
 
+// @route POST /api/admin/products
+// @desc Create new product (admin only)
+// @access Private/Admin
+router.post("/", protect, admin, async (req, res) => {
+  try {
+    const newProduct = new Product({
+      ...req.body,
+      user: req.user._id,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (err) {
+    console.error("Error creating product:", err);
+    res.status(500).json({ message: "Server Error", error: err.message });
+  }
+});
+
 module.exports = router;

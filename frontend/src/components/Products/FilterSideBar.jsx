@@ -21,10 +21,10 @@ const FilterSideBar = () => {
   const categories = ["Top Wear", "Bottom Wear"];
 
   const colors = ["Red", "Blue", "Black", "Green", "Yellow", "Gray"];
-  const sizes = ["S", "M", "L", "XL", "XXL", "XXXL"];
+  const sizes = ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL"];
   const materials = ["Cotton", "Polyester", "Silk"];
   const brands = ["Adidas", "Nike", "Puma", "Under Armour", "New Balance"];
-  const genders = ["Men", "Women"];
+  const genders = ["Men", "Women", "Unisex"];
 
   useEffect(() => {
     const params = Object.fromEntries([...searchParams]);

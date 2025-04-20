@@ -20,19 +20,26 @@ export const fetchAdminProducts = createAsyncThunk(
 //async function to create a new product
 export const createProduct = createAsyncThunk(
   "adminProducts/createProduct",
-  async (productData) => {
-    const response = await axios.post(
-      `${API_URL}/api/admin/products`,
-      productData,
-      {
-        headers: {
-          Authorization: USER_TOKEN,
-        },
-      }
-    );
-    return response.data;
+  async (productData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/admin/products`,
+        productData,
+        {
+          headers: {
+            Authorization: USER_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    } catch (err) {
+      console.error("Create product error:", err.response?.data || err.message);
+      return rejectWithValue(err.response?.data || err.message);
+    }
   }
 );
+
 //async thunk to update an existing product
 export const updateProduct = createAsyncThunk(
   "adminProducts/updateProduct",

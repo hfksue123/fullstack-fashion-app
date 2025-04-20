@@ -8,9 +8,9 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const { user, guestId } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
   const userId = user ? user._id : null;
-  const totalPrice = cart.products.reduce((acc, product) => {
+  const totalPrice = cart?.products?.reduce((acc, product) => {
     return acc + product.price * product.quantity;
-  }, 0);
+  }, 0) || 0;  
 
   const handleCheckout = () => {
     toggleCartDrawer();

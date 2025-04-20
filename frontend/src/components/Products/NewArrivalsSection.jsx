@@ -8,6 +8,7 @@ const NewArrivalsSection = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollStart, setScrollStart] = useState(0);
+  const [dragMoved, setDragMoved] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [newArrivals, setNewArrivals] = useState([]);
@@ -26,6 +27,12 @@ const NewArrivalsSection = () => {
     fetchNewArrivals();
   }, []);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      updateScrollButtons();
+    }
+  }, [newArrivals]);
+
   const updateScrollButtons = () => {
     const container = scrollRef.current;
     if (!container) return;
@@ -36,20 +43,36 @@ const NewArrivalsSection = () => {
 
   const scroll = (direction) => {
     const container = scrollRef.current;
-    if (!container) return;
-    const scrollAmount = direction === "left" ? -400 : 400;
-    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    if (!container || !container.firstChild) return;
+
+    const childWidth = container.firstChild.offsetWidth; // thêm khoảng cách giữa các item (space-x-6 = 1.5rem = 24px)
+
+    if (direction === "right") {
+      // Nếu đã gần cuối thì reset về đầu
+      if (
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth
+      ) {
+        container.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: childWidth, behavior: "smooth" });
+      }
+    } else {
+      container.scrollBy({ left: -childWidth, behavior: "smooth" });
+    }
   };
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.pageX);
     setScrollStart(scrollRef.current.scrollLeft);
+    setDragMoved(false);
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     const walk = e.pageX - startX;
+    if (Math.abs(walk) > 5) setDragMoved(true); // nếu rê chuột thì chặn click
     scrollRef.current.scrollLeft = scrollStart - walk;
   };
 
@@ -67,6 +90,14 @@ const NewArrivalsSection = () => {
     return () => {
       container.removeEventListener("scroll", updateScrollButtons);
     };
+  }, []);
+
+  // === Auto scroll effect every 2s ===
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scroll("right");
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -117,23 +148,26 @@ const NewArrivalsSection = () => {
         onMouseLeave={handleMouseUpOrLeave}
       >
         {newArrivals.map((product) => (
-          <div
+          <Link
             key={product._id}
-            className="min-w-[230px] sm:min-w-[280px] lg:min-w-[320px] shrink-0 relative rounded-lg overflow-hidden shadow"
+            to={`/product/${product._id}`}
+            onClick={(e) => {
+              if (dragMoved) e.preventDefault();
+            }}
+            className="min-w-[250px] sm:min-w-[280px] lg:min-w-[320px] shrink-0 
+            relative rounded-lg overflow-hidden shadow block"
           >
             <img
               src={product.images[0].url}
               alt={product.images[0].altText}
-              className="w-full h-[350px] sm:h-[400px] object-cover"
+              className="w-full h-[300px] sm:h-[400px] object-cover"
               draggable="false"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4">
-              <Link to={`/products/${product._id}`}>
-                <h4 className="font-semibold text-lg">{product.name}</h4>
-                <p className="text-sm mt-1">${product.price}</p>
-              </Link>
+              <h4 className="font-semibold text-lg">{product.name}</h4>
+              <p className="text-sm mt-1">${product.price}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
