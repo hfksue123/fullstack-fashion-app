@@ -127,15 +127,33 @@ const ProductDetails = ({ productId }) => {
             </div>
             {/* Right Content */}
             <div className="md:w-1/2 md:ml-10">
+              {/* Name product */}
               <h1 className="text-2xl md:text-3xl font-semibold mb-2">
                 {selectedProduct.name}
+                {selectedProduct.discountPrice > selectedProduct.price && (
+                  <span className="ml-4 text-red-500 text-2xl font-medium">
+                    -
+                    {Math.floor(
+                      ((selectedProduct.discountPrice - selectedProduct.price) /
+                        selectedProduct.discountPrice) *
+                        100
+                    )}
+                    %
+                  </span>
+                )}
               </h1>
               <p className="text-lg text-gray-600 mb-1 line-through">
                 {selectedProduct.originalPrice &&
                   `${selectedProduct.originalPrice}`}
               </p>
-              <p className="text-xl text-gray-500 mb-2">
-                $ {selectedProduct.price}
+              {/* Price */}
+              <p className="text-2xl text-gray-500 mb-2 flex items-center gap-2">
+                ${selectedProduct.price}
+                {selectedProduct.discountPrice > selectedProduct.price && (
+                  <span className="text-lg text-gray-400 line-through">
+                    ${selectedProduct.discountPrice}
+                  </span>
+                )}
               </p>
               <p className="text-gray-600 mb-4">
                 {selectedProduct.description}

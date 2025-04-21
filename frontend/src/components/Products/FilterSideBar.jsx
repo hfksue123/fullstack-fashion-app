@@ -18,7 +18,7 @@ const FilterSideBar = () => {
 
   const [priceRange, setPriceRange] = useState([0, 100]);
 
-  const categories = ["Top Wear", "Bottom Wear"];
+  const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
 
   const colors = ["Red", "Blue", "Black", "Green", "Yellow", "Gray"];
   const sizes = ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL"];

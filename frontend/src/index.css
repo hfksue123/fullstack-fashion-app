@@ -10,7 +10,9 @@ html, body {
 @theme {
   --color-mainColor: #ea2e0e;
   --color-grayColor: #2C2C2C;
+  --breakpoint-xs: 400px;
 }
+
 
 @layer base {
   .hoverEffect {

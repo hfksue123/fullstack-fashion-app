@@ -14,6 +14,9 @@
 > npm install sonner
 > npm install react-redux @reduxjs/toolkit axios
 > npm install dayjs
+> npm install react-scroll-parallax
+> npm add react-parallax
+
 
 - Cấu trúc file Checkout để thanh toán.
 

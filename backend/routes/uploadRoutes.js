@@ -20,20 +20,18 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, // Limit file size to 10MB
 });
 
+// ------------------------ UPLOAD ROUTE ------------------------
 router.post("/", upload.single("image"), async (req, res) => {
   try {
-    // Check if a file is uploaded
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    // Allow only specific image MIME types
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     if (!allowedTypes.includes(req.file.mimetype)) {
       return res.status(400).json({ message: "Only JPEG, PNG, and WEBP images are allowed" });
     }
 
-    // Function to upload the image buffer to Cloudinary using a stream
     const streamUpload = (fileBuffer) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream((error, result) => {
@@ -43,30 +41,43 @@ router.post("/", upload.single("image"), async (req, res) => {
             reject(error);
           }
         });
-        // Convert buffer to readable stream and pipe to Cloudinary
         streamifier.createReadStream(fileBuffer).pipe(stream);
       });
     };
 
-    // Upload image and wait for result
     const result = await streamUpload(req.file.buffer);
 
-    // Respond with uploaded image info
     res.json({
       imageUrl: result.secure_url,
-      publicId: result.public_id,
+      publicId: result.public_id, // ✅ return publicId to frontend
       width: result.width,
       height: result.height,
       format: result.format,
     });
-
   } catch (error) {
-    // Log detailed error for debugging
     console.error("Error uploading image:", error);
-
-    // Respond with detailed error message
     res.status(500).json({
       message: "An error occurred while uploading the image",
+      error: error.message || "Unknown error",
+    });
+  }
+});
+
+// ------------------------ DELETE ROUTE ------------------------
+router.delete("/", async (req, res) => {
+  const { public_id } = req.body;
+
+  if (!public_id) {
+    return res.status(400).json({ message: "Missing public_id in request body" });
+  }
+
+  try {
+    const result = await cloudinary.uploader.destroy(public_id);
+    res.json({ message: "Image deleted", result });
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    res.status(500).json({
+      message: "Failed to delete image",
       error: error.message || "Unknown error",
     });
   }

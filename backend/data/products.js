@@ -6,7 +6,7 @@ const products = [
     description:
       "This classic Oxford shirt is tailored for a polished yet casual look. Crafted from high-quality cotton, it features a button-down collar and a comfortable, slightly relaxed fit. Perfect for both formal and casual occasions, it comes with long sleeves, a button placket, and a yoke at the back. The shirt is finished with a gently rounded hem and adjustable button cuffs.",
     price: 39.99,
-    discountPrice: 34.99,
+    discountPrice: 44.99,
     countInStock: 20,
     sku: "OX-SH-001",
     category: "Top Wear",
@@ -34,7 +34,7 @@ const products = [
     description:
       "A versatile slim-fit shirt perfect for business or evening events. Designed with a fitted silhouette, the added stretch provides maximum comfort throughout the day. Features a crisp turn-down collar, button placket, and adjustable cuffs.",
     price: 29.99,
-    discountPrice: 24.99,
+    discountPrice: 34.99,
     countInStock: 35,
     sku: "SLIM-SH-002",
     category: "Top Wear",
@@ -62,7 +62,7 @@ const products = [
     description:
       "This casual denim shirt is made from lightweight cotton denim. It features a regular fit, snap buttons, and a straight hem. With Western-inspired details, this shirt is perfect for layering or wearing solo.",
     price: 49.99,
-    discountPrice: 44.99,
+    discountPrice: 54.99,
     countInStock: 15,
     sku: "CAS-DEN-003",
     category: "Top Wear",
@@ -90,7 +90,7 @@ const products = [
     description:
       "Designed for summer, this printed resort shirt is perfect for vacation or weekend getaways. It features a relaxed fit, short sleeves, and a camp collar. The all-over tropical print adds a playful vibe.",
     price: 29.99,
-    discountPrice: 22.99,
+    discountPrice: 34.99,
     countInStock: 25,
     sku: "PRNT-RES-004",
     category: "Top Wear",
@@ -118,7 +118,7 @@ const products = [
     description:
       "A slim-fit, easy-iron shirt in woven cotton fabric with a fitted silhouette. Features a turn-down collar, classic button placket, and a yoke at the back. Long sleeves and adjustable button cuffs with a rounded hem.",
     price: 34.99,
-    discountPrice: 29.99,
+    discountPrice: 49.99,
     countInStock: 30,
     sku: "SLIM-EIR-005",
     category: "Top Wear",
@@ -146,7 +146,7 @@ const products = [
     description:
       "A wardrobe classic, this polo t-shirt features a ribbed collar and cuffs. Made from 100% cotton, it offers breathability and comfort throughout the day. Tailored in a slim fit with a button placket at the neckline.",
     price: 24.99,
-    discountPrice: 19.99,
+    discountPrice: 49.99,
     countInStock: 50,
     sku: "POLO-TSH-006",
     category: "Top Wear",
@@ -174,7 +174,7 @@ const products = [
     description:
       "An oversized graphic t-shirt that combines comfort with street style. Featuring bold prints across the chest, this relaxed fit tee offers a modern vibe, perfect for pairing with jeans or joggers.",
     price: 19.99,
-    discountPrice: 15.99,
+    discountPrice: 125.99,
     countInStock: 40,
     sku: "OVS-GRF-007",
     category: "Top Wear",
@@ -198,7 +198,7 @@ const products = [
     description:
       "A modern take on the classic Henley shirt, this regular-fit style features a buttoned placket and ribbed cuffs. Made from a soft cotton blend with a touch of elastane for stretch.",
     price: 22.99,
-    discountPrice: 18.99,
+    discountPrice: 23.99,
     countInStock: 35,
     sku: "REG-HEN-008",
     category: "Top Wear",
@@ -222,7 +222,7 @@ const products = [
     description:
       "Stay warm with this long-sleeve thermal tee, made from soft cotton with a waffle-knit texture. Ideal for layering in cooler months, the slim-fit design ensures a snug yet comfortable fit.",
     price: 27.99,
-    discountPrice: 22.99,
+    discountPrice: 27.99,
     countInStock: 20,
     sku: "LST-THR-009",
     category: "Top Wear",
@@ -246,7 +246,7 @@ const products = [
     description:
       "A classic V-neck t-shirt for everyday wear. This regular-fit tee is made from breathable cotton and features a clean, simple design with a flattering V-neckline. Lightweight fabric and soft texture make it perfect for casual looks.",
     price: 14.99,
-    discountPrice: 11.99,
+    discountPrice: 25.99,
     countInStock: 60,
     sku: "VNECK-CLS-010",
     category: "Top Wear",
@@ -270,7 +270,7 @@ const products = [
     description:
       "Slim-fit joggers with an elasticated drawstring waist. Features ribbed hems and side pockets. Ideal for casual outings or workouts.",
     price: 40,
-    discountPrice: 35,
+    discountPrice: 45,
     countInStock: 20,
     sku: "BW-001",
     category: "Bottom Wear",
@@ -294,7 +294,7 @@ const products = [
     description:
       "Relaxed-fit cargo joggers featuring multiple pockets for functionality. Drawstring waist and cuffed hems for a modern look.",
     price: 45,
-    discountPrice: 40,
+    discountPrice: 50,
     countInStock: 15,
     sku: "BW-002",
     category: "Bottom Wear",
@@ -318,7 +318,7 @@ const products = [
     description:
       "Tapered sweatpants designed for comfort. Elastic waistband with adjustable drawstring, perfect for lounging or athletic activities.",
     price: 35,
-    discountPrice: 30,
+    discountPrice: 40,
     countInStock: 25,
     sku: "BW-003",
     category: "Bottom Wear",
@@ -342,7 +342,7 @@ const products = [
     description:
       "Classic slim-fit denim jeans with a slight stretch for comfort. Features a zip fly and five-pocket styling for a timeless look.",
     price: 60,
-    discountPrice: 50,
+    discountPrice: 65,
     countInStock: 30,
     sku: "BW-004",
     category: "Bottom Wear",
@@ -366,7 +366,7 @@ const products = [
     description:
       "Slim-fit chino pants made from stretch cotton twill. Features a button closure and front and back pockets. Ideal for both casual and semi-formal wear.",
     price: 55,
-    discountPrice: 48,
+    discountPrice: 60,
     countInStock: 40,
     sku: "BW-005",
     category: "Bottom Wear",
@@ -390,7 +390,7 @@ const products = [
     description:
       "Comfortable track pants with an elasticated waistband and tapered leg. Features side stripes for a sporty look. Ideal for athletic and casual wear.",
     price: 40,
-    discountPrice: 35,
+    discountPrice: 45,
     countInStock: 20,
     sku: "BW-006",
     category: "Bottom Wear",
@@ -414,7 +414,7 @@ const products = [
     description:
       "Tailored slim-fit trousers with belt loops and a hook-and-eye closure. Suitable for formal occasions or smart-casual wear.",
     price: 65,
-    discountPrice: 55,
+    discountPrice: 75,
     countInStock: 15,
     sku: "BW-007",
     category: "Bottom Wear",
@@ -438,7 +438,7 @@ const products = [
     description:
       "Loose-fit cargo pants with multiple utility pockets. Features adjustable ankle cuffs and a drawstring waist for versatility and comfort.",
     price: 50,
-    discountPrice: 45,
+    discountPrice: 65,
     countInStock: 25,
     sku: "BW-008",
     category: "Bottom Wear",
@@ -462,7 +462,7 @@ const products = [
     description:
       "Relaxed-fit sweatpants made from soft fleece fabric. Features an elastic waist and adjustable drawstring for a custom fit.",
     price: 35,
-    discountPrice: 30,
+    discountPrice: 40,
     countInStock: 35,
     sku: "BW-009",
     category: "Bottom Wear",
@@ -486,7 +486,7 @@ const products = [
     description:
       "Classic formal dress pants with a slim fit. Made from lightweight, wrinkle-resistant fabric for a polished look at the office or formal events.",
     price: 70,
-    discountPrice: 60,
+    discountPrice: 75,
     countInStock: 20,
     sku: "BW-010",
     category: "Bottom Wear",
@@ -510,7 +510,7 @@ const products = [
     description:
       "High-waist skinny jeans in stretch denim with a button and zip fly. Features a flattering fit that hugs your curves and enhances your silhouette.",
     price: 50,
-    discountPrice: 45,
+    discountPrice: 55,
     countInStock: 30,
     sku: "BW-W-001",
     category: "Bottom Wear",
@@ -534,7 +534,7 @@ const products = [
     description:
       "Flowy, wide-leg trousers with a high waist and side pockets. Perfect for an elegant look that combines comfort and style.",
     price: 60,
-    discountPrice: 55,
+    discountPrice: 65,
     countInStock: 25,
     sku: "BW-W-002",
     category: "Bottom Wear",
@@ -558,7 +558,7 @@ const products = [
     description:
       "Soft, stretch leggings in a high-rise style. Perfect for lounging, working out, or casual wear, with a smooth fit that flatters your body.",
     price: 25,
-    discountPrice: 20,
+    discountPrice: 27,
     countInStock: 40,
     sku: "BW-W-003",
     category: "Bottom Wear",
@@ -582,7 +582,7 @@ const products = [
     description:
       "Elegant pleated midi skirt with a high waistband and soft fabric that drapes beautifully. Ideal for both formal and casual occasions.",
     price: 55,
-    discountPrice: 50,
+    discountPrice: 60,
     countInStock: 20,
     sku: "BW-W-004",
     category: "Bottom Wear",
@@ -606,7 +606,7 @@ const products = [
     description:
       "High-waist palazzo pants with a loose, flowing fit. Comfortable and stylish, making them perfect for casual outings or beach days.",
     price: 45,
-    discountPrice: 40,
+    discountPrice: 50,
     countInStock: 35,
     sku: "BW-W-005",
     category: "Bottom Wear",
@@ -630,7 +630,7 @@ const products = [
     description:
       "Comfortable high-rise joggers with an elastic waistband and drawstring for a perfect fit. Great for lounging or working out.",
     price: 40,
-    discountPrice: 35,
+    discountPrice: 55,
     countInStock: 30,
     sku: "BW-W-006",
     category: "Bottom Wear",
@@ -654,7 +654,7 @@ const products = [
     description:
       "Stylish paperbag waist shorts with a belted waist and wide legs. Perfect for summer outings and keeping cool in style.",
     price: 35,
-    discountPrice: 30,
+    discountPrice: 38,
     countInStock: 20,
     sku: "BW-W-007",
     category: "Bottom Wear",
@@ -678,7 +678,7 @@ const products = [
     description:
       "Comfortable stretch denim shorts with a high-waisted fit and raw hem. Perfect for pairing with your favorite tops during warmer months.",
     price: 40,
-    discountPrice: 35,
+    discountPrice: 75,
     countInStock: 25,
     sku: "BW-W-008",
     category: "Bottom Wear",
@@ -702,7 +702,7 @@ const products = [
     description:
       "Wide-leg culottes with a flattering high waist and cropped length. The perfect blend of comfort and style for any casual occasion.",
     price: 50,
-    discountPrice: 45,
+    discountPrice: 95,
     countInStock: 30,
     sku: "BW-W-009",
     category: "Bottom Wear",
@@ -726,7 +726,7 @@ const products = [
     description:
       "Timeless pleated trousers with a tailored fit. A wardrobe essential for workwear or formal occasions.",
     price: 70,
-    discountPrice: 65,
+    discountPrice: 85,
     countInStock: 25,
     sku: "BW-W-010",
     category: "Bottom Wear",
@@ -750,7 +750,7 @@ const products = [
     description:
       "A stylish knitted cropped top with a flattering fitted silhouette. Perfect for pairing with high-waisted jeans or skirts for a casual look.",
     price: 40,
-    discountPrice: 35,
+    discountPrice: 55,
     countInStock: 25,
     sku: "TW-W-001",
     category: "Top Wear",
@@ -774,7 +774,7 @@ const products = [
     description:
       "Flowy boho blouse with floral patterns, featuring a relaxed fit and balloon sleeves. Ideal for casual summer days.",
     price: 50,
-    discountPrice: 45,
+    discountPrice: 55,
     countInStock: 30,
     sku: "TW-W-002",
     category: "Top Wear",
@@ -798,7 +798,7 @@ const products = [
     description:
       "A soft, breathable casual t-shirt with a classic fit. Features a round neckline and short sleeves, perfect for everyday wear.",
     price: 25,
-    discountPrice: 20,
+    discountPrice: 30,
     countInStock: 50,
     sku: "TW-W-003",
     category: "Top Wear",
@@ -822,7 +822,7 @@ const products = [
     description:
       "An elegant off-shoulder top with ruffled sleeves and a flattering fit. Ideal for adding a touch of femininity to your outfit.",
     price: 45,
-    discountPrice: 40,
+    discountPrice: 50,
     countInStock: 35,
     sku: "TW-W-004",
     category: "Top Wear",
@@ -846,7 +846,7 @@ const products = [
     description:
       "A delicate cami top with lace trim and adjustable straps. The lightweight fabric makes it perfect for layering or wearing alone during warmer weather.",
     price: 35,
-    discountPrice: 30,
+    discountPrice: 40,
     countInStock: 40,
     sku: "TW-W-005",
     category: "Top Wear",
@@ -870,7 +870,7 @@ const products = [
     description:
       "A trendy graphic print tee with a relaxed fit. Pair it with jeans or skirts for a cool and casual look.",
     price: 30,
-    discountPrice: 25,
+    discountPrice: 55,
     countInStock: 45,
     sku: "TW-W-006",
     category: "Top Wear",
@@ -894,7 +894,7 @@ const products = [
     description:
       "A cozy ribbed long-sleeve top that offers comfort and style. Perfect for layering during cooler months.",
     price: 55,
-    discountPrice: 50,
+    discountPrice: 60,
     countInStock: 30,
     sku: "TW-W-007",
     category: "Top Wear",
@@ -918,7 +918,7 @@ const products = [
     description:
       "A lightweight ruffle-sleeve blouse with a flattering fit. Perfect for a feminine touch to any outfit.",
     price: 45,
-    discountPrice: 40,
+    discountPrice: 50,
     countInStock: 20,
     sku: "TW-W-008",
     category: "Top Wear",
@@ -942,7 +942,7 @@ const products = [
     description:
       "A versatile button-up shirt that can be dressed up or down. Made from soft fabric with a tailored fit, it's perfect for both casual and formal occasions.",
     price: 60,
-    discountPrice: 55,
+    discountPrice: 75,
     countInStock: 25,
     sku: "TW-W-009",
     category: "Top Wear",
@@ -966,7 +966,7 @@ const products = [
     description:
       "A chic v-neck wrap top with a tie waist. Its elegant style makes it perfect for both casual and semi-formal occasions.",
     price: 50,
-    discountPrice: 45,
+    discountPrice: 65,
     countInStock: 30,
     sku: "TW-W-010",
     category: "Top Wear",
@@ -984,6 +984,54 @@ const products = [
     ],
     rating: 4.7,
     numReviews: 22,
+  },
+  // Accessories (5)
+  {
+    name: "Leather Belt",
+    description: "Genuine leather belt with a sleek metal buckle. A timeless accessory for any outfit.",
+    price: 25,
+    discountPrice: 35,
+    countInStock: 50,
+    sku: "AC-001",
+    category: "Accessories",
+    brand: "BuckleCraft",
+    sizes: ["S", "M", "L"],
+    colors: ["Black", "Brown"],
+    collections: "Classic Essentials",
+    material: "Leather",
+    gender: "Unisex",
+    images: [
+      {
+        url: "https://picsum.photos/500/500?random=39",
+        altText: "Leather Belt",
+      },
+    ],
+    rating: 4.4,
+    numReviews: 18,
+  },
+  // Bags (5)
+  {
+    name: "Tote Handbag",
+    description: "Spacious tote handbag with inner compartments for everyday use.",
+    price: 80,
+    discountPrice: 95,
+    countInStock: 15,
+    sku: "BG-001",
+    category: "Bags",
+    brand: "UrbanCarry",
+    sizes: ["One Size"],
+    colors: ["Beige", "Black"],
+    collections: "Workwear",
+    material: "Canvas",
+    gender: "Women",
+    images: [
+      {
+        url: "https://picsum.photos/500/500?random=40",
+        altText: "Tote Handbag",
+      },
+    ],
+    rating: 4.6,
+    numReviews: 20,
   },
 ];
 

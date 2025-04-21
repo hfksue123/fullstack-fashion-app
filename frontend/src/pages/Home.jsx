@@ -6,6 +6,7 @@ import ProductDetails from "../components/Products/ProductDetails";
 import ProductGrid from "../components/Products/ProductGrid";
 import FeaturedCollection from "../components/Products/FeaturedCollection";
 import FeaturesSection from "../components/Products/FeaturesSection";
+import ParallaxSection from "../components/Products/ParallaxSection";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "./../redux/slices/productsSlice";
 import axios from "axios";
@@ -60,6 +61,7 @@ const Home = () => {
         </h2>
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
+      <ParallaxSection />
       <FeaturedCollection />
       <FeaturesSection />
     </div>

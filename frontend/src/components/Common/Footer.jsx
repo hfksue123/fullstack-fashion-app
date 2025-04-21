@@ -1,11 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { TbBrandMeta } from 'react-icons/tb';
+import React from "react";
+import { Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
+import { FaGithub, FaFacebook } from "react-icons/fa";
+import { RiInstagramFill } from "react-icons/ri";
+import { SlLocationPin } from "react-icons/sl";
 
 const Footer = () => {
   return (
-    <footer className="border-t py-12">
+    <footer className="border-t py-6">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 lg:px-0">
         <div>
           <h3 className="text-lg text-gray-800 mb-4">New</h3>
@@ -96,7 +98,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-500 hoverEffect"
             >
-              <TbBrandMeta className="h-5 w-5" />
+              <FaGithub className="h-5 w-5" />
             </a>
             <a
               href=""
@@ -104,7 +106,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-500 hoverEffect"
             >
-              <TbBrandMeta className="h-5 w-5" />
+              <FaFacebook className="h-5 w-5" />
             </a>
             <a
               href=""
@@ -112,23 +114,36 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-500 hoverEffect"
             >
-              <TbBrandMeta className="h-5 w-5" />
+              <RiInstagramFill className="h-6 w-6" />
             </a>
           </div>
-          <p className='text-gray-500'>Call Us</p>
+          <div className="mb-4">
+          <p className="text-gray-500">Call Us</p>
           <p>
-            <FiPhoneCall className='inline-block mr-2'/> 0123-456-789
+            <FiPhoneCall className="inline-block mr-2" /> 0123-456-789
+          </p>
+          </div>
+          <p className="text-gray-500">Our Address</p>
+          <p>
+            <SlLocationPin className="inline-block mr-2" /> Thu Duc, HCMC
           </p>
         </div>
       </div>
       {/* Footer Bottom */}
-      <div className='container mx-auto mt-12 px-4 lg:px-0 border-t border-gray-200 pt-4'>
-        <p className='text-gray-500 text-sm tracking-tighter text-center'>
-          &copy; 2025 Your Company. All rights reserved.
+      <div className="container mx-auto px-4 lg:px-0 border-t border-gray-200 pt-4">
+        <p className="text-gray-400 text-xs tracking-tighter text-center">
+          &copy; 2025{" "}
+          <a
+            href="https://www.facebook.com/hfksue123"
+            className="text-blue-400"
+          >
+            Bao Nguyen
+          </a>
+          . All rights reserved.
         </p>
       </div>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

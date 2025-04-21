@@ -45,6 +45,7 @@ const AddProductPage = () => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
+
     try {
       setUploading(true);
       const { data } = await axios.post(
@@ -52,14 +53,37 @@ const AddProductPage = () => {
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
+
       setProductData((prevData) => ({
         ...prevData,
-        images: [...prevData.images, { url: data.imageUrl, altText: "" }],
+        images: [
+          ...prevData.images,
+          {
+            url: data.imageUrl,
+            publicId: data.publicId,
+            altText: "",
+          },
+        ],
       }));
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleDeleteImage = async (index, publicId) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/upload`, {
+        data: { public_id: publicId },
+      });
+
+      setProductData((prevData) => ({
+        ...prevData,
+        images: prevData.images.filter((_, i) => i !== index),
+      }));
+    } catch (error) {
+      console.error("Error deleting image:", error);
     }
   };
 
@@ -132,7 +156,6 @@ const AddProductPage = () => {
           )
         )}
 
-        {/* Dropdowns */}
         <div>
           <label className="block font-semibold mb-2">Category</label>
           <select
@@ -175,7 +198,6 @@ const AddProductPage = () => {
           </select>
         </div>
 
-        {/* Sizes checkbox */}
         <div>
           <label className="block font-semibold mb-2">Sizes</label>
           <div className="flex flex-wrap gap-2">
@@ -197,7 +219,6 @@ const AddProductPage = () => {
           </div>
         </div>
 
-        {/* Colors picker */}
         <div className="col-span-full">
           <label className="block font-semibold mb-2">Colors</label>
           <div className="flex items-center gap-2 mb-2">
@@ -209,7 +230,7 @@ const AddProductPage = () => {
             />
             <input
               type="text"
-              placeholder="Color name (e.g. Red) or hex code (#000000) then Add"
+              placeholder="Color name or hex"
               value={newColorLabel}
               onChange={(e) => setNewColorLabel(e.target.value)}
               className="border border-gray-300 rounded-md p-2 flex-1"
@@ -247,7 +268,6 @@ const AddProductPage = () => {
           </div>
         </div>
 
-        {/* Image upload */}
         <div className="col-span-full">
           <label className="block font-semibold mb-2">Product Images</label>
           <div className="flex items-center gap-4">
@@ -255,12 +275,7 @@ const AddProductPage = () => {
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className="block w-full text-sm text-gray-600
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-md file:border-0
-      file:text-sm file:font-semibold
-      file:bg-blue-50 file:text-blue-700
-      hover:file:bg-blue-100"
+              className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />
             {uploading && (
               <span className="text-sm text-gray-500 animate-pulse">
@@ -283,14 +298,7 @@ const AddProductPage = () => {
                   />
                   <button
                     type="button"
-                    onClick={() =>
-                      setProductData((prevData) => ({
-                        ...prevData,
-                        images: prevData.images.filter(
-                          (_, idx) => idx !== index
-                        ),
-                      }))
-                    }
+                    onClick={() => handleDeleteImage(index, image.publicId)}
                     className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
                     title="Remove"
                   >
