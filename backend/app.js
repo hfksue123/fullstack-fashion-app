@@ -23,7 +23,7 @@ app.use(cors());
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("WELCOME TO RABBIT API!");
+  res.send("WELCOME TO HFKSUE123 API!");
 });
 
 app.use("/api/users", userRouter);
@@ -39,6 +39,6 @@ app.use("/api/admin/users", adminRoutes);
 app.use("/api/admin/products", productAdminRoutes);
 app.use("/api/admin/orders", orderAdminRoutes);
 
-console.log("Rabbit API backend is ready!");
+console.log("Hfksue123 API backend is ready!");
 
 module.exports = app;

@@ -154,18 +154,29 @@ router.delete("/:id", protect, admin, async (req, res) => {
 //@access Private/Admin
 router.delete('/:id/image', protect, admin, async (req, res) => {
   try {
-    const { imageUrl } = req.body;
+    const { publicId, imageUrl } = req.body;
+
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
 
-    product.images = product.images.filter((img) => img !== imageUrl);
+    // Xóa ảnh khỏi Cloudinary nếu có publicId
+    if (publicId) {
+      const cloudinary = require('cloudinary').v2;
+      await cloudinary.uploader.destroy(publicId);
+    }
+
+    // Xóa ảnh khỏi mảng images trong DB
+    product.images = product.images.filter((img) => img.url !== imageUrl);
+
     await product.save();
-    res.json({ message: 'Image removed', images: product.images });
+    res.json({ message: 'Image deleted successfully', images: product.images });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
   }
 });
+
+
 
 
 //@route GET /api/products

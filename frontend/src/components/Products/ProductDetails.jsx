@@ -85,16 +85,16 @@ const ProductDetails = ({ productId }) => {
   return (
     <div className="p-6">
       {selectedProduct && (
-        <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
+        <div className="max-w-6xl mx-auto bg-white rounded-lg">
           <div className="flex flex-col md:flex-row">
-            {/* Left Thumbnail */}
+            {/* Left */}
             <div className="hidden md:flex flex-col space-y-4 mr-6">
               {selectedProduct.images.map((image, index) => (
                 <img
                   key={index}
                   src={image.url}
                   alt={image.altText || `Thumbnail ${index}`}
-                  className={`w-20 h-20 object-cover rounded-lg cursor-pointer border hoverEffect ${
+                  className={`w-15 h-15 object-cover rounded-lg cursor-pointer border hoverEffect ${
                     mainImage === image.url ? "border-black" : "border-gray-300"
                   }`}
                   onClick={() => setMainImage(image.url)}
@@ -107,7 +107,7 @@ const ProductDetails = ({ productId }) => {
                 <img
                   src={mainImage}
                   alt="Main Product"
-                  className="w-full h-auto object-cover rounded-lg"
+                  className="w-full lg:h-[600px] object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -128,10 +128,10 @@ const ProductDetails = ({ productId }) => {
             {/* Right Content */}
             <div className="md:w-1/2 md:ml-10">
               {/* Name product */}
-              <h1 className="text-2xl md:text-3xl font-semibold mb-2">
+              <h1 className="text-xl md:text-3xl font-semibold mb-2">
                 {selectedProduct.name}
                 {selectedProduct.discountPrice > selectedProduct.price && (
-                  <span className="ml-4 text-red-500 text-2xl font-medium">
+                  <span className="ml-4 text-red-500 text-lg lg:text-2xl font-medium">
                     -
                     {Math.floor(
                       ((selectedProduct.discountPrice - selectedProduct.price) /
@@ -147,15 +147,16 @@ const ProductDetails = ({ productId }) => {
                   `${selectedProduct.originalPrice}`}
               </p>
               {/* Price */}
-              <p className="text-2xl text-gray-500 mb-2 flex items-center gap-2">
+              <p className="text-lg lg:text-2xl text-gray-500 mb-2 flex items-center gap-2">
                 ${selectedProduct.price}
                 {selectedProduct.discountPrice > selectedProduct.price && (
-                  <span className="text-lg text-gray-400 line-through">
+                  <span className="text-sm lg:text-lg text-gray-400 line-through">
                     ${selectedProduct.discountPrice}
                   </span>
                 )}
               </p>
-              <p className="text-gray-600 mb-4">
+              {/* Description */}
+              <p className="text-sm lg:text-lg tracking-tight text-gray-700 mb-4">
                 {selectedProduct.description}
               </p>
 
@@ -225,7 +226,7 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleAddToCart}
                 disabled={isButtonDisabled}
-                className={`bg-black text-white py-2 px-6 rounded w-full mb-4 ${
+                className={`bg-black text-white py-2 rounded w-full ${
                   isButtonDisabled
                     ? "bg-gray-900 opacity-50 cursor-not-allowed"
                     : "hover:bg-gray-900"
@@ -236,7 +237,7 @@ const ProductDetails = ({ productId }) => {
 
               {/* Characteristics */}
               <div className="mt-10 text-gray-700">
-                <h3 className="text-xl font-bold mb-4">Characteristics:</h3>
+                <h3 className="text-xl font-bold mb-2">Characteristics:</h3>
                 <table className="w-full text-left text-sm text-gray-600">
                   <tbody>
                     <tr>

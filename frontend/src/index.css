@@ -1,18 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 @import "tailwindcss";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 @theme {
   --color-mainColor: #ea2e0e;
-  --color-grayColor: #2C2C2C;
+  --color-grayColor: #2c2c2c;
+  --color-darkColor: #222222;
+  --font-questrial: "Questrial", sans-serif;
   --breakpoint-xs: 400px;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }
 
+@layer components {
+  .stroke-text {
+    -webkit-text-stroke: 0.1px #222222;
+    color: transparent;
+  }
+  .animate-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+}
 
 @layer base {
   .hoverEffect {

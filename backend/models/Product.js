@@ -57,13 +57,9 @@ const productSchema = new mongoose.Schema(
     },
     images: [
       {
-        url: {
-          type: String,
-          required: true,
-        },
-        altText: {
-          type: String,
-        },
+        url: { type: String, required: true },
+        publicId: { type: String },
+        altText: { type: String },
       },
     ],
     isFeatured: {
@@ -76,7 +72,6 @@ const productSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
-      default: 0,
     },
     numReviews: {
       type: Number,

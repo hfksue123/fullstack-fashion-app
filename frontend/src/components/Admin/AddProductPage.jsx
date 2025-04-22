@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/slices/adminProductSlice";
 import axios from "axios";
 
-const categories = ["Top Wear", "Bottom Wear"];
+const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
 const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL"];
-const materials = ["Cotton", "Polyester", "Silk"];
 const genders = ["Men", "Women", "Unisex"];
+const materials = ["Cotton", "Fleece", "Denim", "Polyester"];
 
 const AddProductPage = () => {
   const dispatch = useDispatch();
@@ -16,20 +16,20 @@ const AddProductPage = () => {
   const [productData, setProductData] = useState({
     name: "",
     description: "",
-    price: 0,
-    discountPrice: 0,
-    countInStock: 0,
+    price: "",
+    discountPrice: "",
+    countInStock: "",
     sku: "",
     category: categories[0],
     brand: "",
     sizes: [],
     colors: [],
     collections: "",
-    material: materials[0],
+    material: "",
     gender: genders[0],
     images: [],
-    rating: 0,
-    numReviews: 0,
+    rating: "",
+    numReviews: "",
   });
 
   const [uploading, setUploading] = useState(false);
@@ -111,6 +111,7 @@ const AddProductPage = () => {
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
+        {/* Name, Brand, SKU, Collections */}
         {["name", "brand", "sku", "collections"].map((field) => (
           <div key={field}>
             <label className="block font-semibold mb-2 capitalize">
@@ -126,7 +127,7 @@ const AddProductPage = () => {
             />
           </div>
         ))}
-
+        {/* Description */}
         <div>
           <label className="block font-semibold mb-2">Description</label>
           <textarea
@@ -138,7 +139,7 @@ const AddProductPage = () => {
             required
           />
         </div>
-
+        {/* Price, Discount, CountInStock, Rating, NumReviews */}
         {["price", "discountPrice", "countInStock", "rating", "numReviews"].map(
           (field) => (
             <div key={field}>
@@ -155,7 +156,7 @@ const AddProductPage = () => {
             </div>
           )
         )}
-
+        {/* Category */}
         <div>
           <label className="block font-semibold mb-2">Category</label>
           <select
@@ -169,21 +170,25 @@ const AddProductPage = () => {
             ))}
           </select>
         </div>
-
+        {/* Material: textfield + datalist */}
         <div>
           <label className="block font-semibold mb-2">Material</label>
-          <select
+          <input
+            type="text"
             name="material"
+            list="materials"
             value={productData.material}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2"
-          >
-            {materials.map((mat) => (
-              <option key={mat}>{mat}</option>
+            placeholder="Enter or select material"
+          />
+          <datalist id="materials">
+            {materials.map((mat, idx) => (
+              <option key={idx} value={mat} />
             ))}
-          </select>
+          </datalist>
         </div>
-
+        {/* Gender */}
         <div>
           <label className="block font-semibold mb-2">Gender</label>
           <select
@@ -197,7 +202,7 @@ const AddProductPage = () => {
             ))}
           </select>
         </div>
-
+        {/* Sizes */}
         <div>
           <label className="block font-semibold mb-2">Sizes</label>
           <div className="flex flex-wrap gap-2">
@@ -218,7 +223,7 @@ const AddProductPage = () => {
             ))}
           </div>
         </div>
-
+        {/* Colors */}
         <div className="col-span-full">
           <label className="block font-semibold mb-2">Colors</label>
           <div className="flex items-center gap-2 mb-2">
@@ -267,7 +272,7 @@ const AddProductPage = () => {
             ))}
           </div>
         </div>
-
+{/* Upload  */}
         <div className="col-span-full">
           <label className="block font-semibold mb-2">Product Images</label>
           <div className="flex items-center gap-4">

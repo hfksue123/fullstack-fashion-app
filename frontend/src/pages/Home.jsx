@@ -7,6 +7,7 @@ import ProductGrid from "../components/Products/ProductGrid";
 import FeaturedCollection from "../components/Products/FeaturedCollection";
 import FeaturesSection from "../components/Products/FeaturesSection";
 import ParallaxSection from "../components/Products/ParallaxSection";
+import InfiniteTextMarquee from "../components/Products/InfiniteTextMarquee";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "./../redux/slices/productsSlice";
 import axios from "axios";
@@ -45,6 +46,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <InfiniteTextMarquee/>
       <GenderCollection />
       <NewArrivalsSection />
       {/* Best seller */}

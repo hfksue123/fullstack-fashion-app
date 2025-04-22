@@ -16,30 +16,39 @@ const ProductGrid = ({ products, loading, error }) => {
         return (
           <Link key={index} to={`/product/${product._id}`} className="block">
             <div className="relative bg-white p-4 rounded-lg shadow hover:shadow-md transition">
+            
               {/* Badge giảm giá */}
               {hasDiscount && (
-                <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">
+                <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">
                   -{discountPercent}%
                 </div>
               )}
 
               {/* Hình ảnh */}
-              <div className="w-full h-96 mb-4 relative">
+              <div className="w-full h-100 mb-4 relative">
+                {/* Default image */}
                 <img
-                  src={product.images[0].url}
-                  alt={product.images[0].altText || product.name}
-                  className="w-full h-full object-cover rounded-lg"
+                  src={product.images[0]?.url}
+                  alt={product.images[0]?.altText || product.name}
+                  className="w-full h-full object-cover transition-opacity duration-300"
                 />
+
+                {/* Hover effect */}
+                {product.images[1]?.url && (
+                  <img
+                    src={product.images[1].url}
+                    alt={product.images[1].altText || product.name}
+                    className="w-full h-full object-cover absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                  />
+                )}
               </div>
 
               {/* Tên sản phẩm */}
-              <h3 className="text-sm mb-1 line-clamp-2">{product.name}</h3>
+              <h3 className="text-sm line-clamp-2">{product.name}</h3>
 
               {/* Giá */}
               <div className="flex items-center gap-2">
-                <p className="text-gray-800 font-semibold text-sm">
-                  ${price}
-                </p>
+                <p className="text-gray-800 font-semibold text-sm">${price}</p>
                 {hasDiscount && (
                   <p className="text-gray-400 text-sm line-through">
                     ${discountPrice}

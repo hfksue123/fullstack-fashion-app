@@ -4,7 +4,7 @@ import { AiFillInstagram } from "react-icons/ai";
 
 const TopBar = () => {
   return (
-    <div className="bg-mainColor text-white">
+    <div className="bg-darkColor text-white">
       <div className="container mx-auto flex justify-between items-center py-3 px-4">
         <div className="flex items-center space-x-4">
           <a href="#" className="hover:text-gray-300">
@@ -17,8 +17,8 @@ const TopBar = () => {
             <AiFillInstagram className="h-5 w-5" />
           </a>
         </div>
-        <div className="text-sm text-center flex-grow">
-          <span>We ship worldwide - Fast and reliable shipping.</span>
+        <div className="ml-4 text-xs lg:text-sm text-center flex-grow">
+          <span>We ship worldwide - Fast and reliable.</span>
         </div>
         <div className="text-sm hidden sm:block">
           <a href="tel:+01298383811" className="hover:text-gray-300">

@@ -163,7 +163,7 @@ const NewArrivalsSection = () => {
               className="w-full h-[300px] sm:h-[400px] object-cover"
               draggable="false"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-opacity-50 backdrop-blur-md text-white p-4">
+            <div className="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-3xl text-white p-4">
               <h4 className="font-semibold text-lg">{product.name}</h4>
               <p className="text-sm mt-1">${product.price}</p>
             </div>

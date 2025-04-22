@@ -30,14 +30,16 @@ const NavBar = () => {
     { label: "Women", path: "/collections/all?gender=Women" },
     { label: "Top", path: "/collections/all?category=Top Wear" },
     { label: "Bottom", path: "/collections/all?category=Bottom Wear" },
+    { label: "Accessories", path: "/collections/all?category=Accessories" },
+    { label: "Bags", path: "/collections/all?category=Bags" },
   ];
 
   return (
     <>
-      <nav className="container mx-auto flex items-center justify-between px-6 py-1">
+      <nav className="container mx-auto flex items-center justify-between px-2 lg:px-6 py-1">
         {/* Left - Logo */}
-        <Link to="/" className="text-2xl font-medium">
-          Rabbit
+        <Link to="/" className="text-lg lg:text-2xl font-bold text-darkColor">
+          HFKSUE123
         </Link>
 
         {/* Center - Desktop Nav */}
@@ -59,7 +61,7 @@ const NavBar = () => {
           {user && user.role === "admin" && (
             <Link
               to="/admin"
-              className="block bg-black px-2 rounded text-sm text-white"
+              className="block bg-darkColor px-2 py-1 rounded text-sm text-white"
             >
               Admin
             </Link>
