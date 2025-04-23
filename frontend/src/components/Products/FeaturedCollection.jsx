@@ -8,10 +8,10 @@ const FeaturedCollection = () => {
       <div className="container mx-auto flex flex-col lg:flex-row items-center bg-screen-50 rounded-3xl">
         {/* Left Content */}
         <div className="lg:w-1/2 p-8 text-center lg:text-left">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">
+          <h2 className="text-lg font-semibold text-gray-700">
             Comfort and Style
           </h2>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-darkColor mb-2">
             Apparel made for your everyday life
           </h2>
           <p className="text-lg text-gray-600 mb-6">
@@ -20,7 +20,7 @@ const FeaturedCollection = () => {
           </p>
           <Link
             to="/collections/all"
-            className="bg-black text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-800"
+            className="bg-darkColor text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-500 hoverEffect"
           >
             Shop Now
           </Link>

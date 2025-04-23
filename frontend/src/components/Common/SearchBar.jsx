@@ -52,7 +52,7 @@ const SearchBar = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-gray-200 px-4 py-2 pl-4 pr-12 rounded-lg focus:outline-none 
-              placeholder:text-gray-500 text-gray-900"
+              placeholder:text-gray-500 text-darkColor"
             />
             <button
               type="submit"
@@ -74,7 +74,7 @@ const SearchBar = () => {
       ) : (
         <button
           onClick={handleSearchToggle}
-          className="text-gray-700 hover:text-blue-500"
+          className="text-darkColor hover:text-black"
         >
           <HiMagnifyingGlass className="h-6 w-6" />
         </button>

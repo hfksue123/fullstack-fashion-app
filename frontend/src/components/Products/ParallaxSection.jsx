@@ -18,7 +18,7 @@ const ParallaxSection = () => {
           <div
             style={{
               position: "absolute",
-              background: `rgba(255, 125, 0, ${percentage * 1})`,
+              background: `rgba(34, 34, 34, ${percentage * 1})`,
               left: "50%",
               top: "50%",
               borderRadius: "50%",

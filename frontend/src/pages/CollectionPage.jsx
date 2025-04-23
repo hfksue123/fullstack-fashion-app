@@ -52,7 +52,7 @@ const CollectionPage = () => {
       {/* Mobile Filter button */}
       <button
         onClick={toggleSidebar}
-        className="lg:hidden border p-2 flex justify-center items-center"
+        className="lg:hidden border-t border-b p-2 flex justify-center items-center"
       >
         <FaFilter className="mr-2" /> Filter
       </button>

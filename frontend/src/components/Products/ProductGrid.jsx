@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 
 const ProductGrid = ({ products, loading, error }) => {
+
+  const optimizeImage = (url) =>
+    url.replace("/upload/", "/upload/w_800,h_1000,c_fill,q_auto,f_auto/");
+
   if (loading) return <p>Loading..............</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {products.map((product, index) => {
         const { discountPrice, price } = product;
         const hasDiscount = discountPrice && discountPrice > price;
@@ -19,38 +23,38 @@ const ProductGrid = ({ products, loading, error }) => {
             
               {/* Badge giảm giá */}
               {hasDiscount && (
-                <div className="absolute top-1 right-1 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">
+                <div className="absolute top-1 right-1 bg-red-500 text-white text-[10px] lg:text-xs font-semibold px-1 lg:px-2 lg:py-1 rounded-full z-10">
                   -{discountPercent}%
                 </div>
               )}
 
               {/* Hình ảnh */}
-              <div className="w-full h-100 mb-4 relative">
+              <div className="w-full h-40 lg:h-90 relative">
                 {/* Default image */}
                 <img
-                  src={product.images[0]?.url}
-                  alt={product.images[0]?.altText || product.name}
+                  src={optimizeImage(product.images[0]?.url)}
+                  alt={optimizeImage(product.images[0]?.url)?.altText || product.name}
                   className="w-full h-full object-cover transition-opacity duration-300"
                 />
 
                 {/* Hover effect */}
                 {product.images[1]?.url && (
                   <img
-                    src={product.images[1].url}
-                    alt={product.images[1].altText || product.name}
+                    src={optimizeImage(product.images[1]?.url)}
+                    alt={optimizeImage(product.images[1].url).altText || product.name}
                     className="w-full h-full object-cover absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
                   />
                 )}
               </div>
 
               {/* Tên sản phẩm */}
-              <h3 className="text-sm line-clamp-2">{product.name}</h3>
+              <h3 className="text-xs lg:text-sm line-clamp-2">{product.name}</h3>
 
               {/* Giá */}
               <div className="flex items-center gap-2">
-                <p className="text-gray-800 font-semibold text-sm">${price}</p>
+                <p className="text-gray-800 font-semibold text-xs lg:text-sm">${price}</p>
                 {hasDiscount && (
-                  <p className="text-gray-400 text-sm line-through">
+                  <p className="text-gray-500 text-[10px] lg:text-sm line-through">
                     ${discountPrice}
                   </p>
                 )}

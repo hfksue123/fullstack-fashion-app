@@ -5,9 +5,9 @@ import { createProduct } from "../../redux/slices/adminProductSlice";
 import axios from "axios";
 
 const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
-const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL"];
+const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "One Size"];
 const genders = ["Men", "Women", "Unisex"];
-const materials = ["Cotton", "Fleece", "Denim", "Polyester"];
+const materials = ["Cotton", "Fleece", "Denim", "Polyester Leather", "Wool"];
 
 const AddProductPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const AddProductPage = () => {
     colors: [],
     collections: "",
     material: "",
-    gender: genders[0],
+    gender: [],
     images: [],
     rating: "",
     numReviews: "",
@@ -189,19 +189,31 @@ const AddProductPage = () => {
           </datalist>
         </div>
         {/* Gender */}
-        <div>
-          <label className="block font-semibold mb-2">Gender</label>
-          <select
-            name="gender"
-            value={productData.gender}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md p-2"
-          >
-            {genders.map((gen) => (
-              <option key={gen}>{gen}</option>
-            ))}
-          </select>
-        </div>
+<div>
+  <label className="block font-semibold mb-2">Gender</label>
+  <div className="flex gap-4">
+    {genders.map((gen) => (
+      <label key={gen} className="flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          name="gender"
+          value={gen}
+          checked={productData.gender.includes(gen)}
+          onChange={(e) => {
+            const { checked, value } = e.target;
+            const updatedGender = checked
+              ? [...productData.gender, value]
+              : productData.gender.filter((g) => g !== value);
+            setProductData({ ...productData, gender: updatedGender });
+          }}
+          className="accent-black"
+        />
+        {gen}
+      </label>
+    ))}
+  </div>
+</div>
+
         {/* Sizes */}
         <div>
           <label className="block font-semibold mb-2">Sizes</label>

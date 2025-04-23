@@ -57,9 +57,9 @@ const Home = () => {
         <p className="text-center">Loading best seller products...</p>
       )}
 
-      <div className="container mx-auto">
+      <div className="container mx-auto mb-6">
         <h2 className="text-3xl text-center font-bold mb-4">
-          Top Wears For Women
+          Bottom Wears For Women
         </h2>
         <ProductGrid products={products} loading={loading} error={error} />
       </div>

@@ -82,7 +82,7 @@ const FilterSideBar = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="max-xs:p-6 p-4 max-xs:mt-20">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-semibold text-gray-800">Filter</h3>
         <button
@@ -149,7 +149,6 @@ const FilterSideBar = () => {
       </div>
 
       {/* Price Range Filter */}
-      <div className="block text-gray-600 font-medium mb-2">Price Range</div>
       <input
         type="range"
         name="priceRange"

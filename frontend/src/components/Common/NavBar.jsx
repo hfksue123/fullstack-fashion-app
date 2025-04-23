@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import {
   HiOutlineUser,
@@ -26,8 +27,6 @@ const NavBar = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Men", path: "/collections/all?gender=Men" },
-    { label: "Women", path: "/collections/all?gender=Women" },
     { label: "Top", path: "/collections/all?category=Top Wear" },
     { label: "Bottom", path: "/collections/all?category=Bottom Wear" },
     { label: "Accessories", path: "/collections/all?category=Accessories" },
@@ -36,19 +35,19 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="container mx-auto flex items-center justify-between px-2 lg:px-6 py-1">
+      <nav className="fixed w-full mx-auto flex items-center justify-between px-4 lg:px-10 py-1 z-500">
         {/* Left - Logo */}
-        <Link to="/" className="text-lg lg:text-2xl font-bold text-darkColor">
+        <Link to="/" className="text-lg lg:text-3xl font-bold text-darkColor">
           HFKSUE123
         </Link>
 
         {/* Center - Desktop Nav */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-4 ml-23">
           {menuItems.map((item) => (
             <Link
               key={item.label}
               to={item.path}
-              className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+              className="text-darkColor hover:text-black text-sm font-medium uppercase"
             >
               {item.label}
             </Link>
@@ -68,7 +67,7 @@ const NavBar = () => {
           )}
 
           <Link to="/profile" className="hover:text-black" aria-label="Profile">
-            <HiOutlineUser className="w-6 h-6 text-gray-700" />
+            <HiOutlineUser className="w-6 h-6 text-darkColor" />
           </Link>
 
           <button
@@ -76,7 +75,7 @@ const NavBar = () => {
             className="relative hover:text-black"
             aria-label="Cart"
           >
-            <HiOutlineShoppingBag className="w-6 h-6 text-gray-700" />
+            <HiOutlineShoppingBag className="w-6 h-6 text-darkColor" />
             {/* Badge for Cart Items */}
             {cartItemCount > 0 && (
               <span className="absolute -top-1 -right-2 bg-mainColor text-white text-xs rounded-full px-2 py-0.5">
@@ -94,7 +93,7 @@ const NavBar = () => {
             className="md:hidden"
             aria-label="Open Menu"
           >
-            <HiBars3BottomRight className="w-6 h-6 text-gray-700" />
+            <HiBars3BottomRight className="w-6 h-6 text-darkColor" />
           </button>
         </div>
       </nav>
@@ -104,8 +103,7 @@ const NavBar = () => {
 
       {/* Mobile Nav Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-3/4 sm:w-1/2 md:w-1/3 bg-white shadow-lg z-50 
-        transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-3/4 sm:w-1/2 md:w-1/3 bg-white shadow-lg z-510 transition-transform duration-300 ease-in-out ${
           navDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -122,7 +120,7 @@ const NavBar = () => {
                 key={item.label}
                 to={item.path}
                 onClick={toggleNavDrawer}
-                className="block text-gray-600 hover:text-black"
+                className="block text-darkColor hover:text-black"
               >
                 {item.label}
               </Link>

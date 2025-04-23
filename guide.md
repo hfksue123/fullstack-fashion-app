@@ -16,6 +16,7 @@
 > npm install dayjs
 > npm install react-scroll-parallax
 > npm add react-parallax
+> npm install motion
 
 
 - Cấu trúc file Checkout để thanh toán.

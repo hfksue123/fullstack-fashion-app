@@ -176,9 +176,6 @@ router.delete('/:id/image', protect, admin, async (req, res) => {
   }
 });
 
-
-
-
 //@route GET /api/products
 //@desc Get all products with optional query filters
 //@access Public

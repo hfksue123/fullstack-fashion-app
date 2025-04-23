@@ -1,9 +1,14 @@
-import React from "react";
-
 const InfiniteTextMarquee = () => {
+  const handleClick = () => {
+    const target = document.getElementById("new-arrivals");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="relative w-full overflow-hidden whitespace-nowrap border-y border-gray-200 py-4 bg-white">
-      <div className="animate-marquee inline-block">
+    <div className="mt-8 lg:mt-0 relative w-full overflow-hidden whitespace-nowrap border-y border-gray-200 py-4 bg-white cursor-pointer">
+      <div className="animate-marquee inline-block" onClick={handleClick}>
         {Array.from({ length: 10 }).map((_, index) => (
           <span
             key={index}

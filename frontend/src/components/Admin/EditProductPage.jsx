@@ -26,8 +26,8 @@ const EditProductPage = () => {
   };
 
   const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
-  const materials = ["Cotton", "Fleece", "Denim", "Polyester"];
-  const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL"];
+  const materials = ["Cotton", "Fleece", "Denim", "Polyester Leather"];
+  const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "One Size"];
   const genders = ["Men", "Women", "Unisex"];
 
   const [newColor, setNewColor] = useState("#000000");
@@ -188,19 +188,30 @@ const EditProductPage = () => {
           />
         </div>
         {/* Gender */}
-        <div>
-          <label className="block font-semibold mb-2">Gender</label>
-          <select
-            name="gender"
-            value={productData.gender}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md p-2"
-          >
-            {genders.map((gen) => (
-              <option key={gen}>{gen}</option>
-            ))}
-          </select>
-        </div>
+<div>
+  <label className="block font-semibold mb-2">Gender</label>
+  <div className="flex gap-4">
+    {genders.map((gen) => (
+      <label key={gen} className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          name="gender"
+          value={gen}
+          checked={productData.gender.includes(gen)}
+          onChange={(e) => {
+            const { checked, value } = e.target;
+            const updatedGender = checked
+              ? [...productData.gender, value]
+              : productData.gender.filter((g) => g !== value);
+            setProductData({ ...productData, gender: updatedGender });
+          }}
+        />
+        {gen}
+      </label>
+    ))}
+  </div>
+</div>
+
         {/* Price */}
         <div className="mb-6">
           <label className="block font-semibold mb-2">Price</label>

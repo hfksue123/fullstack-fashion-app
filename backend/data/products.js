@@ -16,7 +16,7 @@ const products = [
     colors: ["Black"],
     collections: "Winter",
     material: "Cotton",
-    gender: "Men",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745314993/ELYSIAN_GATEWAY_LONGSLEEVE_1_hnbddv.webp",
@@ -52,7 +52,31 @@ const products = [
     rating: 5,
     numReviews: 14,
   },
-  // Top-unisex
+  {
+    name: "LEGENDS INFINITY TANKTOP",
+    description:
+      "Tank top form. Full screen printed pattern on front and back of shirt. Wide, comfortable sleeve design.",
+    price: 14.99,
+    discountPrice: 19.99,
+    countInStock: 13,
+    sku: "HLIT0001",
+    category: "Top Wear",
+    brand: "Urban Chic",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["Black"],
+    collections: "Spring",
+    material: "Cotton",
+    gender: "Men",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745409739/LEGENDS_INFINITY_TANKTOP_1_skxlho.webp",
+        publicId: "LEGENDS_INFINITY_TANKTOP_1_skxlho",
+        altText: "LEGENDS_INFINITY_TANKTOP",
+      },
+    ],
+    rating: 4.2,
+    numReviews: 14,
+  },
   {
     name: "SHOOTING STAR TEE - RED",
     description:
@@ -67,7 +91,7 @@ const products = [
     colors: ["Red"],
     collections: "Streetwear",
     material: "Cotton",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745315489/SHOOTING_STAR_TEE_-_RED_1_dfqngy.webp",
@@ -92,7 +116,7 @@ const products = [
     colors: ["#949494"],
     collections: "Streetwear",
     material: "Cotton",
-    gender: "Women",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745315839/KNITTED_JERSEY_TEE_1_c5jouf.webp",
@@ -117,7 +141,7 @@ const products = [
     colors: ["#949494"],
     collections: "Winter",
     material: "Cotton",
-    gender: "Unisex" || "Women" || "Men",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745316130/SPLICE_POLO_1_xhn5l0.webp",
@@ -168,7 +192,7 @@ const products = [
     colors: ["#252525"],
     collections: "Autumn",
     material: "Kaki Camo",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745317020/RAIDER_KHAKI_CAMO_SHORTS_1_czf7gi.webp",
@@ -218,7 +242,7 @@ const products = [
     colors: ["#121212"],
     collections: "Lounge Collection",
     material: "Fleece",
-    gender: "Women",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745317660/TECTONIC_RIFT_JEANS_1_zv8mze.webp",
@@ -268,12 +292,87 @@ const products = [
     colors: ["Beige", "Navy", "Black"],
     collections: "Smart Casual Collection",
     material: "Jean",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745318177/ARTHROPOD_WASH_JEAN_1_u5ocja.webp",
         publicId: "ARTHROPOD_WASH_JEAN_1_u5ocja",
         altText: "ARTHROPOD WASH JEAN",
+      },
+    ],
+    rating: 4.8,
+    numReviews: 15,
+  },
+  {
+    name: "NEUTRAL CARGO PARACHUTE SKIRT",
+    description:
+      "Elastic waistband skirt with drawstring. Using the technique of assembling the fabric on the front and back of the skirt. 2 front slit pockets and 2 back slit pockets with 2 box pockets. Drawstring at the hem of the skirt for decoration.",
+    price: 39.99,
+    discountPrice: 49.99,
+    countInStock: 4,
+    sku: "HNCPS000",
+    category: "Bottom Wear",
+    brand: "CasualLook",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#bf8f64"],
+    collections: "Autumn Collection",
+    material: "Canvas",
+    gender: "Women",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745411154/NEUTRAL_CARGO_PARACHUTE_SKIRT_1_te28fh.webp",
+        publicId: "NEUTRAL_CARGO_PARACHUTE_SKIRT_1_te28fh",
+        altText: "NEUTRAL CARGO PARACHUTE SKIRT",
+      },
+    ],
+    rating: 4.8,
+    numReviews: 15,
+  },
+  {
+    name: "WASH JEANS SHORT",
+    description:
+      "Unisex cropped jeans, knee length, wide leg. Wash treatment creates a unique effect. Featured with patchwork details and torn treatment on the front. 2 front pockets and 2 back pockets.",
+    price: 19.99,
+    discountPrice: 29.99,
+    countInStock: 40,
+    sku: "HWJS0002",
+    category: "Bottom Wear",
+    brand: "CasualLook",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["#717c81"],
+    collections: "Spring Collection",
+    material: "Jean",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745411491/WASH_JEANS_SHORT_1_wgdtwy.webp",
+        publicId: "WASH_JEANS_SHORT_1_wgdtwy",
+        altText: "WASH JEANS SHORT",
+      },
+    ],
+    rating: 4.8,
+    numReviews: 15,
+  },
+  {
+    name: "SPLINTERED PANTS",
+    description:
+      "Regular fit, elasticized waistband with drawstring. Flared details and vertical slits on front and back.",
+    price: 39.99,
+    discountPrice: 42.99,
+    countInStock: 40,
+    sku: "HSPP0002",
+    category: "Bottom Wear",
+    brand: "CasualLook",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["White"],
+    collections: "Spring Collection",
+    material: "French Terry",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745411716/SPLINTERED_PANTS_1_wdzw8c.webp",
+        publicId: "SPLINTERED_PANTS_1_wdzw8c",
+        altText: "SPLINTERED PANTS",
       },
     ],
     rating: 4.8,
@@ -294,7 +393,7 @@ const products = [
     colors: ["Black"],
     collections: "Activewear Collection",
     material: "Simili",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745318582/MASCOT_CROSSBODY_BAG_1_guw3qv.webp",
@@ -344,7 +443,7 @@ const products = [
     colors: ["Olive", "Brown", "Black"],
     collections: "Street Style Collection",
     material: "Simili",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745319001/BACKPACK_LEATHER_24_1_j514t1.webp",
@@ -394,7 +493,7 @@ const products = [
     colors: ["Black"],
     collections: "Formal Collection",
     material: "Canvas",
-    gender: "Women",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745319379/ZWART_WEEKENDER_BAG_1_xawnfz.webp",
@@ -405,7 +504,32 @@ const products = [
     rating: 4.9,
     numReviews: 8,
   },
-  //Accessories (5)
+  //Accessories (6)
+  {
+    name: "PROFILE ELLIPSE CAP",
+    description:
+      "Baseball cap with typo embroidery on front and left side, soft lining inside with tear treatment details. Hat has metal button to adjust width at back.",
+    price: 12,
+    discountPrice: 16,
+    countInStock: 30,
+    sku: "HPEC000",
+    category: "Accessories",
+    brand: "HADES",
+    sizes: ["One Size"],
+    colors: ["Black"],
+    collections: "Spring Collection",
+    material: "Kaki Jean",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745411949/PROFILE_ELLIPSE_CAP_1_oxjhjl.webp",
+        publicId: "PROFILE_ELLIPSE_CAP_1_oxjhjl",
+        altText: "PROFILE ELLIPSE CAP",
+      },
+    ],
+    rating: 4.8,
+    numReviews: 20,
+  },
   {
     name: "TAILWIND CAP",
     description:
@@ -420,7 +544,7 @@ const products = [
     colors: ["#2d2c35"],
     collections: "Denim Collection",
     material: "Suede",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745319863/TAILWIND_CAP_1_ayxi4u.webp",
@@ -445,7 +569,7 @@ const products = [
     colors: ["#134548", "White"],
     collections: "Formal Collection",
     material: "Kate",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745320008/GOODIES_TURBAN_1_wepxex.webp",
@@ -470,7 +594,7 @@ const products = [
     colors: ["#4b5864", "#beb8b4"],
     collections: "Activewear Collection",
     material: "Wool",
-    gender: "Women",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745320373/SPECTRE_BEANIE_1_dfdv09.webp",
@@ -495,7 +619,7 @@ const products = [
     colors: ["#b5a393", "White", "Black"],
     collections: "Spring Collection",
     material: "Cotton",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745320612/LOGO_SOCKS_1_zeoxcb.webp",
@@ -520,12 +644,138 @@ const products = [
     colors: ["#594234"],
     collections: "Summer Collection",
     material: "Kaki Jean",
-    gender: "Unisex",
+    gender: ["Men", "Women", "Unisex"],
     images: [
       {
         url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745320935/ICONIC_STAR_SNAPBACK_1_dcs1or.webp",
         publicId: "ICONIC_STAR_SNAPBACK_1_dcs1or",
         altText: "ICONIC STAR SNAPBACK",
+      },
+    ],
+    rating: 4.4,
+    numReviews: 22,
+  },
+  // Outerwear (5)
+  {
+    name: "HOME BODY CLUB ZIP HOODIE",
+    description:
+      "Unisex full zip hoodie with silk screen printed typographic front. Hoodie has 2 front pockets, pleated details on the back and logo fabric tag. 2 sleeves with loose details combined with ribbed fabric.",
+    price: 25,
+    discountPrice: 30,
+    countInStock: 5,
+    sku: "HBCZ0002",
+    category: "Outers",
+    brand: "HADES",
+    sizes: ["M"],
+    colors: ["Gray"],
+    collections: "Winter",
+    material: "Fleece",
+    gender: "Women",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745408388/HOME_BODY_CLUB_ZIP_HOODIE_1_fuoudk.webp",
+        publicId: "HOME_BODY_CLUB_ZIP_HOODIE_1_fuoudk",
+        altText: "HOME BODY CLUB ZIP HOODIE",
+      },
+    ],
+    rating: 4.8,
+    numReviews: 22,
+  },
+  {
+    name: "911 LEATHER JACKET",
+    description:
+      "Full zip leather jacket. Typo graphic on the jacket uses a combination of 3 techniques: regular embroidery, embossed embroidery and leather patchwork. The details spread all over the jacket create color blocks as highlights. The jacket has 2 front pockets.",
+    price: 35.99,
+    discountPrice: 49.99,
+    countInStock: 5,
+    sku: "HLJ0001",
+    category: "Outers",
+    brand: "HADES",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["Black"],
+    collections: "Winter",
+    material: "PU leather",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745408742/911_LEATHER_JACKET_1_hkkhok.webp",
+        publicId: "911_LEATHER_JACKET_1_hkkhok",
+        altText: "911 LEATHER JACKET",
+      },
+    ],
+    rating: 4.5,
+    numReviews: 2,
+  },
+  {
+    name: "MULTI HOODIE",
+    description:
+      "Baseball cap with 3D typo embroidery on the front and back of the cap. The typo on the left side of the cap is embroidered in white. The cap has a metal button to adjust the width at the back.",
+    price: 25,
+    discountPrice: 29.99,
+    countInStock: 45,
+    sku: "MHD0004",
+    category: "Outers",
+    brand: "BreezyVibes",
+    sizes: ["L", "XL", "XXL"],
+    colors: ["Dark Green", "Black"],
+    collections: "Summer Collection",
+    material: "Fleece",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745408990/MULTI_HOODIE_1_vjaeo4.webp",
+        publicId: "MULTI_HOODIE_1_vjaeo4",
+        altText: "MULTI HOODIE",
+      },
+    ],
+    rating: 4,
+    numReviews: 22,
+  },
+  {
+    name: "MONOGRAM GILE",
+    description:
+      "Silk-screen printed 'monogram' pattern. Same color collar, body, and hem. Soft, cool wool material.",
+    price: 19.99,
+    discountPrice: 23,
+    countInStock: 35,
+    sku: "HMG0002",
+    category: "Outers",
+    brand: "BreezyVibes",
+    sizes: ["M"],
+    colors: ["Black", "#d5d3c8"],
+    collections: "Autumn",
+    material: "Wool",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745409282/MONOGRAM_GILE_1_znq5ke.webp",
+        publicId: "MONOGRAM_GILE_1_znq5ke",
+        altText: "MONOGRAM GILE",
+      },
+    ],
+    rating: 4.4,
+    numReviews: 22,
+  },
+  {
+    name: "RACER VAIN JACKET",
+    description:
+      "Baseball cap with 3D typo embroidery on the front and back of the cap. The typo on the left side of the cap is embroidered in white. The cap has a metal button to adjust the width at the back.",
+    price: 35,
+    discountPrice: 40,
+    countInStock: 5,
+    sku: "HRVJ0001",
+    category: "Outers",
+    brand: "BreezyVibes",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["Black"],
+    collections: "Winter Collection",
+    material: "Canvas",
+    gender: ["Men", "Women", "Unisex"],
+    images: [
+      {
+        url: "https://res.cloudinary.com/dgxnly71k/image/upload/v1745409391/RACER_VAIN_JACKET_1_b0czqb.webp",
+        publicId: "RACER_VAIN_JACKET_1_b0czqb",
+        altText: "RACER VAIN JACKET",
       },
     ],
     rating: 4.4,

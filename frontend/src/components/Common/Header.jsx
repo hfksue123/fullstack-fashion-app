@@ -1,17 +1,25 @@
-import React from 'react'
-import TopBar from '../Layout/TopBar'
-import NavBar from './NavBar'
+import { useState } from "react";
+import TopBar from "./TopBar";
+import NavBar from "./NavBar";
 
 const Header = () => {
-  return (
-    <header className='border-b border-gray-200'>
-        {/* Topbar */}
-        <TopBar />
-        {/* Navbar */}
-        <NavBar />
-        {/* cart drawer */}
-    </header>
-  )
-}
+  const [topBarVisible, setTopBarVisible] = useState(true);
 
-export default Header
+  return (
+    <header className="fixed top-0 left-0 w-full z-500">
+      {/* TopBar */}
+      <TopBar visible={topBarVisible} setVisible={setTopBarVisible} />
+
+      {/* NavBar with transition */}
+      <div
+        className={`transition-all duration-500 ease-in-out ${
+          topBarVisible ? "" : "mt-0"
+        }`}
+      >
+        <NavBar />
+      </div>
+    </header>
+  );
+};
+
+export default Header;
