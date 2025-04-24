@@ -50,7 +50,7 @@ export const fetchProductDetails = createAsyncThunk(
   }
 );
 
-//Async thunk to fetch similar products
+//Async thunk to update a product
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, productData }) => {
@@ -79,12 +79,24 @@ export const fetchSimilarProducts = createAsyncThunk(
   }
 );
 
+// Async thunk to fetch sale products
+export const fetchSaleProducts = createAsyncThunk(
+  "products/fetchSaleProducts",
+  async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/products/sale`
+    );
+    return response.data;
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
     selectedProduct: null, //store the details of single product
     similarProducts: [],
+    saleProducts: [],
     loading: false,
     error: null,
     filters: {
@@ -169,6 +181,7 @@ const productsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+      // Handle fetching similar products
       .addCase(fetchSimilarProducts.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -178,6 +191,19 @@ const productsSlice = createSlice({
         state.similarProducts = action.payload;
       })
       .addCase(fetchSimilarProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Handle fetching sale products
+      .addCase(fetchSaleProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchSaleProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.saleProducts = action.payload;
+      })
+      .addCase(fetchSaleProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

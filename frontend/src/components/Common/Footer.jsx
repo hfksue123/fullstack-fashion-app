@@ -81,42 +81,101 @@ const Footer = () => {
 
             {section !== "follow" ? (
               <ul
-                className={`space-y-2 text-gray-600 ${sectionsOpen[section] ? "block dropdown-enter" : "hidden"} md:block`}
+                className={`space-y-2 text-gray-600 ${
+                  sectionsOpen[section] ? "block dropdown-enter" : "hidden"
+                } md:block`}
               >
                 {section === "shop" && (
                   <>
-                    <li><Link to="#" className="hover:text-gray-400">Men's top Wear</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">Women's top Wear</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">Men's bottom Wear</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">Women's bottom Wear</Link></li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Men's top Wear
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Women's top Wear
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Men's bottom Wear
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Women's bottom Wear
+                      </Link>
+                    </li>
                   </>
                 )}
                 {section === "support" && (
                   <>
-                    <li><Link to="#" className="hover:text-gray-400">Contact Us</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">About Us</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">FAQs</Link></li>
-                    <li><Link to="#" className="hover:text-gray-400">Features</Link></li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Contact Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        About Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        FAQs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="hover:text-gray-400">
+                        Features
+                      </Link>
+                    </li>
                   </>
                 )}
               </ul>
             ) : (
-              <div className={`${sectionsOpen[section] ? "block dropdown-enter" : "hidden"} md:block`}>
+              <div
+                className={`${
+                  sectionsOpen[section] ? "block dropdown-enter" : "hidden"
+                } md:block`}
+              >
                 <div className="flex items-center space-x-4 mb-4">
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-gray-500">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-500"
+                  >
                     <FaGithub className="h-5 w-5 text-gray-600" />
                   </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-gray-500">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-500"
+                  >
                     <FaFacebook className="h-5 w-5 text-gray-600" />
                   </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-gray-500">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-500"
+                  >
                     <RiInstagramFill className="h-6 w-6 text-gray-600" />
                   </a>
                 </div>
                 <div className="mb-4">
-                  <p className="text-gray-600"><FiPhoneCall className="w-4 h-4 inline-block mr-1" /> 0123-456-789</p>
+                  <p className="text-gray-600">
+                    <FiPhoneCall className="w-4 h-4 inline-block mr-1" />{" "}
+                    0123-456-789
+                  </p>
                 </div>
-                <p className="text-gray-600"><SlLocationPin className="w-4 h-4 inline-block mr-1" /> Thu Duc, HCMC</p>
+                <p className="text-gray-600">
+                  <SlLocationPin className="w-4 h-4 inline-block mr-1" /> Thu
+                  Duc, HCMC
+                </p>
               </div>
             )}
           </div>
@@ -125,7 +184,17 @@ const Footer = () => {
 
       <div className="mx-auto px-4 border-t border-gray-200 pt-6 mt-10">
         <p className="text-gray-400 text-xs text-center">
-          &copy; 2025 <a href="https://www.facebook.com/hfksue123" className="text-blue-400">Bao Nguyen</a>. All rights reserved.
+          &copy; 2025{" "}
+          <a
+            href="https://www.facebook.com/hfksue123"
+            className="text-xs text-blue-400"
+          >
+            Bao Nguyen
+          </a>
+          . All rights reserved. | Data Provided by{" "}
+          <a href="https://hades.vn/" className="text-xs text-blue-400">
+            HADES
+          </a>
         </p>
       </div>
     </footer>

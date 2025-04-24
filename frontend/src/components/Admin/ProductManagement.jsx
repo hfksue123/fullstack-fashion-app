@@ -48,6 +48,7 @@ const ProductManagement = () => {
               <th className="py-3 px-4">Image</th>
               <th className="py-3 px-4">Name</th>
               <th className="py-3 px-4">Price</th>
+              <th className="py-3 px-4">Categories</th>
               <th className="py-3 px-4">SKU</th>
               <th className="py-3 px-4">Actions</th>
             </tr>
@@ -60,7 +61,7 @@ const ProductManagement = () => {
                   className="border-b hover:bg-gray-50 cursor-pointer"
                 >
                   {/* STT */}
-                  <td className="p-4 text-gray-900">{idx + 1}</td>
+                  <td className="px-4 text-gray-900">{idx + 1}</td>
 
                   {/* Image thumbnail */}
                   <td className="p-4">
@@ -80,12 +81,15 @@ const ProductManagement = () => {
                   </td>
 
                   {/* Name */}
-                  <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
+                  <td className="p-4 text-sm tracking-tighter text-gray-900 whitespace-nowrap">
                     {product.name}
                   </td>
 
                   {/* Price */}
                   <td className="p-4">${product.price}</td>
+
+                  {/* Category */}
+                  <td className="p-4">{product.category}</td>
 
                   {/* SKU */}
                   <td className="p-4">{product.sku}</td>

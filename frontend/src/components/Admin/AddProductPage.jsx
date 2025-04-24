@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/slices/adminProductSlice";
 import axios from "axios";
 
-const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
+const categories = ["Tops", "Bottoms", "Accessories", "Bags", "Outers"];
 const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "One Size"];
 const genders = ["Men", "Women", "Unisex"];
 const materials = ["Cotton", "Fleece", "Denim", "Polyester Leather", "Wool"];

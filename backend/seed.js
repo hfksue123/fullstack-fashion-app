@@ -1,56 +1,67 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const Product = require("./models/Product");
-const User = require("./models/User");
-const Cart = require("./models/Cart");
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const Product = require('./models/Product');
+const User = require('./models/User');
+const Cart = require('./models/Cart');
 
-const products = require("./data/products");
+const products = require('./data/products');
 
 dotenv.config();
 
-// Connect to DB
 mongoose.connect(process.env.MONGODB_URI);
 
 // Function to seed DB
 const seedData = async () => {
   try {
-    // Clear users and carts, but keep existing products
+    const action = process.argv[2]; // "reset" or undefined
+
+    // Clear user and cart data
     await User.deleteMany();
     await Cart.deleteMany();
 
-    // Create default admin user
+    // Create admin user
     const createdUser = await User.create({
-      name: "Admin User",
-      email: "admin@example.com",
-      password: "admin123",
-      role: "admin",
+      name: 'Admin User',
+      email: 'admin@example.com',
+      password: 'admin123',
+      role: 'admin',
     });
 
     const userID = createdUser._id;
 
-    // Get all existing SKUs from DB
-    const existingSkus = await Product.find().distinct("sku");
+    if (action === 'reset') {
+      // Reset mode: delete all products and reinsert all
+      await Product.deleteMany();
 
-    // Filter products: only those with SKUs not already in DB
-    const newProducts = products
-      .filter((product) => !existingSkus.includes(product.sku))
-      .map((product) => ({
+      const resetProducts = products.map((product) => ({
         ...product,
         user: userID,
       }));
 
-    // Insert new products if any
-    if (newProducts.length > 0) {
-      await Product.insertMany(newProducts);
-      console.log(`${newProducts.length} new products added.`);
+      await Product.insertMany(resetProducts);
+      console.log(`${resetProducts.length} products reset and inserted.`);
     } else {
-      console.log("No new products to add.");
+      // Update mode: only insert new products
+      const existingSkus = await Product.find().distinct('sku');
+      const newProducts = products
+        .filter((product) => !existingSkus.includes(product.sku))
+        .map((product) => ({
+          ...product,
+          user: userID,
+        }));
+
+      if (newProducts.length > 0) {
+        await Product.insertMany(newProducts);
+        console.log(`${newProducts.length} new products added.`);
+      } else {
+        console.log('No new products to add.');
+      }
     }
 
-    console.log("Seeding completed.");
+    console.log('Seeding completed.');
     process.exit();
   } catch (error) {
-    console.error("Error seeding data:", error);
+    console.error('Error seeding data:', error);
     process.exit(1);
   }
 };

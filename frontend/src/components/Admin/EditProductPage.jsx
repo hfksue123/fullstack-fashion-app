@@ -14,6 +14,10 @@ const EditProductPage = () => {
   const { selectedProduct, loading, error } = useSelector(
     (state) => state.products
   );
+
+  const optimizeImage = (url) =>
+    url.replace("/upload/", "/upload/w_100,h_100,c_fill,q_auto,f_auto/");
+
   const handleAddColor = () => {
     const color = newColorLabel || newColor;
     if (!color.trim()) return;
@@ -25,7 +29,7 @@ const EditProductPage = () => {
     setNewColorLabel("");
   };
 
-  const categories = ["Top Wear", "Bottom Wear", "Accessories", "Bags"];
+  const categories = ["Tops", "Bottoms", "Accessories", "Bags", "Outers"];
   const materials = ["Cotton", "Fleece", "Denim", "Polyester Leather"];
   const sizesList = ["S", "M", "L", "XL", "XXL", "XXXL", "One Size"];
   const genders = ["Men", "Women", "Unisex"];
@@ -73,44 +77,43 @@ const EditProductPage = () => {
   const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
     if (!files.length) return;
-  
+
     setUploading(true);
-  
+
     try {
       const uploadPromises = files.map((file) => {
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append("image", file);
         return axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/upload`,
           formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
+          { headers: { "Content-Type": "multipart/form-data" } }
         );
       });
-  
+
       const results = await Promise.all(uploadPromises);
-  
+
       const uploadedImages = results.map((res) => ({
         url: res.data.imageUrl,
         publicId: res.data.publicId,
-        altText: '',
+        altText: "",
       }));
-  
+
       setProductData((prevData) => ({
         ...prevData,
         images: [...prevData.images, ...uploadedImages],
       }));
     } catch (error) {
-      console.error('Error uploading image(s):', error);
+      console.error("Error uploading image(s):", error);
     } finally {
       setUploading(false);
     }
   };
-  
 
   const handleDeleteImage = async (index, publicId) => {
     try {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/upload`, {
-        data: { public_id:publicId },
+        data: { public_id: publicId },
       });
 
       setProductData((prevData) => ({
@@ -127,7 +130,7 @@ const EditProductPage = () => {
     dispatch(updateProduct({ id, productData }));
     navigate("/admin/products");
   };
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -188,29 +191,29 @@ const EditProductPage = () => {
           />
         </div>
         {/* Gender */}
-<div>
-  <label className="block font-semibold mb-2">Gender</label>
-  <div className="flex gap-4">
-    {genders.map((gen) => (
-      <label key={gen} className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          name="gender"
-          value={gen}
-          checked={productData.gender.includes(gen)}
-          onChange={(e) => {
-            const { checked, value } = e.target;
-            const updatedGender = checked
-              ? [...productData.gender, value]
-              : productData.gender.filter((g) => g !== value);
-            setProductData({ ...productData, gender: updatedGender });
-          }}
-        />
-        {gen}
-      </label>
-    ))}
-  </div>
-</div>
+        <div>
+          <label className="block font-semibold mb-2">Gender</label>
+          <div className="flex gap-4">
+            {genders.map((gen) => (
+              <label key={gen} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="gender"
+                  value={gen}
+                  checked={productData.gender.includes(gen)}
+                  onChange={(e) => {
+                    const { checked, value } = e.target;
+                    const updatedGender = checked
+                      ? [...productData.gender, value]
+                      : productData.gender.filter((g) => g !== value);
+                    setProductData({ ...productData, gender: updatedGender });
+                  }}
+                />
+                {gen}
+              </label>
+            ))}
+          </div>
+        </div>
 
         {/* Price */}
         <div className="mb-6">
@@ -386,7 +389,12 @@ const EditProductPage = () => {
         {/* Image Upload */}
         <div className="mb-6">
           <label className="block font-semibold mb-2">Upload Image</label>
-          <input type="file" multiple onChange={handleImageUpload} accept="image/*" />
+          <input
+            type="file"
+            multiple
+            onChange={handleImageUpload}
+            accept="image/*"
+          />
 
           <div className="flex flex-wrap gap-4 mt-4">
             {productData.images.map((image, index) => (
@@ -395,7 +403,7 @@ const EditProductPage = () => {
                 className="relative group w-24 h-24 border border-gray-200 rounded-md overflow-hidden"
               >
                 <img
-                  src={image.url}
+                  src={optimizeImage(image.url)}
                   alt={image.altText || "Product Image"}
                   className="w-full h-full object-cover transition duration-300 group-hover:opacity-80"
                 />

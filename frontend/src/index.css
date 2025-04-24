@@ -44,9 +44,8 @@ body {
     white-space: nowrap;
     animation: marquee 25s linear infinite;
   }
-  .text-mask {
-    filter: invert(1);
-  mix-blend-mode: difference;
+  .custom-easing .swiper-wrapper {
+    transition-timing-function: ease-in-out !important;
   }
 }
 

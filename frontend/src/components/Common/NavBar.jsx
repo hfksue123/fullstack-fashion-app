@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HiOutlineUser,
   HiOutlineShoppingBag,
@@ -17,46 +16,69 @@ const NavBar = () => {
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const { cart } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
+  const location = useLocation();
 
-  const cartItemCount =
-    cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
-    0;
+  const cartItemCount = cart?.products?.length || 0;
+
 
   const toggleNavDrawer = () => setNavDrawerOpen(!navDrawerOpen);
   const toggleCartDrawer = () => setDrawerOpen(!drawerOpen);
 
   const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Top", path: "/collections/all?category=Top Wear" },
-    { label: "Bottom", path: "/collections/all?category=Bottom Wear" },
+    { label: "All", path: "/" },
+    { label: "Tops", path: "/collections/all?category=Tops" },
+    { label: "Bottoms", path: "/collections/all?category=Bottoms" },
     { label: "Accessories", path: "/collections/all?category=Accessories" },
     { label: "Bags", path: "/collections/all?category=Bags" },
+    { label: "Outers", path: "/collections/all?category=Outers" },
+    { label: "Hot Sale", path: "/products/sale" },
   ];
+
+  const getIsActive = (item) => {
+    const queryParams = new URLSearchParams(location.search);
+    const category = queryParams.get("category");
+    const isHome = item.path === "/" && location.pathname === "/";
+    const isCategory =
+      item.path.includes("/collections/all") &&
+      location.pathname === "/collections/all" &&
+      category === item.label;
+    const isExactMatch = item.path === location.pathname;
+    return isHome || isCategory || isExactMatch;
+  };
 
   return (
     <>
-      <nav className="fixed w-full mx-auto flex items-center justify-between px-4 lg:px-10 py-1 z-500">
-        {/* Left - Logo */}
+      <nav className="fixed w-full mx-auto flex items-center justify-between px-4 lg:px-10 py-1 z-500 shadow-sm">
+        {/* Logo */}
         <Link to="/" className="text-lg lg:text-3xl font-bold text-darkColor">
           HFKSUE123
         </Link>
 
-        {/* Center - Desktop Nav */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-4 ml-23">
-          {menuItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.path}
-              className="text-darkColor hover:text-black text-sm font-medium uppercase"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = getIsActive(item);
+            return (
+              <Link
+                key={item.label}
+                to={item.path}
+                className={`group relative text-sm font-medium uppercase ${
+                  isActive ? "text-black" : "text-darkColor hover:text-black"
+                }`}
+              >
+                <span>{item.label}</span>
+                <span
+                  className={`absolute -bottom-[1px] left-0 h-[1px] bg-darkColor hoverEffect ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Right */}
+        {/* Right Side */}
         <div className="flex items-center space-x-4">
-          {/* Admin Panel button */}
           {user && user.role === "admin" && (
             <Link
               to="/admin"
@@ -65,29 +87,22 @@ const NavBar = () => {
               Admin
             </Link>
           )}
-
           <Link to="/profile" className="hover:text-black" aria-label="Profile">
             <HiOutlineUser className="w-6 h-6 text-darkColor" />
           </Link>
-
           <button
             onClick={toggleCartDrawer}
             className="relative hover:text-black"
             aria-label="Cart"
           >
             <HiOutlineShoppingBag className="w-6 h-6 text-darkColor" />
-            {/* Badge for Cart Items */}
             {cartItemCount > 0 && (
               <span className="absolute -top-1 -right-2 bg-mainColor text-white text-xs rounded-full px-2 py-0.5">
                 {cartItemCount}
               </span>
             )}
           </button>
-
-          {/* Search */}
           <SearchBar />
-
-          {/* Mobile Menu Toggle */}
           <button
             onClick={toggleNavDrawer}
             className="md:hidden"
@@ -115,16 +130,21 @@ const NavBar = () => {
         <div className="p-4">
           <h2 className="text-xl font-semibold mb-4">Menu</h2>
           <nav className="space-y-4">
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.path}
-                onClick={toggleNavDrawer}
-                className="block text-darkColor hover:text-black"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {menuItems.map((item) => {
+              const isActive = getIsActive(item);
+              return (
+                <Link
+                  key={item.label}
+                  to={item.path}
+                  onClick={toggleNavDrawer}
+                  className={`block text-darkColor ${
+                    isActive ? "border-b-1 border-darkColor font-medium" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </div>

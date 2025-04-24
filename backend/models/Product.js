@@ -19,11 +19,6 @@ const productSchema = new mongoose.Schema(
     discountPrice: {
       type: Number,
     },
-    countInStock: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     sku: {
       type: String,
       required: true,
@@ -43,6 +38,11 @@ const productSchema = new mongoose.Schema(
     colors: {
       type: [String],
       required: true,
+    },
+    countInStock: {
+      type: Number,
+      required: true,
+      default: 0,
     },
     collections: {
       type: String,

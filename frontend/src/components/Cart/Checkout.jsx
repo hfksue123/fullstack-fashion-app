@@ -5,6 +5,7 @@ import PaypalButton from './PaypalButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { createCheckout } from '../../redux/slices/checkoutSlide';
 import axios from 'axios';
+import { clearCart } from '../../redux/slices/cartSlice';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ const Checkout = () => {
   const { cart, loading, error } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
   const [checkoutId, setCheckoutId] = useState(null);
+  const [isFinalizing, setIsFinalizing] = useState(false);
+
 
   const [shippingAddress, setShippingAddress] = useState({
     firstName: '',
@@ -24,10 +27,11 @@ const Checkout = () => {
   });
 
   useEffect(() => {
-    if (!cart?.products?.length) {
-      navigate('/');
+    if (!cart?.products?.length && !isFinalizing) {
+      navigate('/order-confirmation');
     }
-  }, [cart, navigate]);
+  }, [cart, isFinalizing, navigate]);
+  
 
   const handleCreateCheckout = async (e) => {
     e.preventDefault();
@@ -66,20 +70,46 @@ const Checkout = () => {
 
   const handleFinalizeCheckout = async (checkoutId) => {
     try {
+      setIsFinalizing(true);
+
       await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/finalize`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/checkout/${checkoutId}/finalize`,
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         }
       );
-      navigate('/order-confirmation');
+
+      // ⬇️ Send request to update stock of products
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/products/update-stock`,
+        {
+          items: cart.products.map((item) => ({
+            productId: item.productId || item._id,
+            quantity: item.quantity,
+          })),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+
+      dispatch(clearCart());
+      navigate("/order-confirmation");
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsFinalizing(false);
     }
   };
+  
+  
 
   if (loading) return <p>Loading cart...</p>;
   if (error) return <p>Error: {error}</p>;

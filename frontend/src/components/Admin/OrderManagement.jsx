@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  deleteOrder,
   fetchAllOrders,
   updateOrderStatus,
 } from "./../../redux/slices/adminOrderSlice";
@@ -25,6 +26,12 @@ const OrderManagement = () => {
     dispatch(updateOrderStatus({ id: orderId, status }));
   };
 
+  const handleDelete = (orderId) => {
+    if (window.confirm("Are you sure you want to delete this order?")) {
+      dispatch(deleteOrder(orderId));
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -45,10 +52,7 @@ const OrderManagement = () => {
           <tbody>
             {orders.length > 0 ? (
               orders.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-b hover:bg-gray-500 cursor-pointer"
-                >
+                <tr key={order._id} className="border-b cursor-pointer">
                   <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">
                     #{order._id}
                   </td>
@@ -71,12 +75,24 @@ const OrderManagement = () => {
                     </select>
                   </td>
                   <td className="p-4">
-                    <button
-                      onClick={() => handleStatusChange(order._id, "Delivered")}
-                      className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                    >
-                      Mark As Delivered
-                    </button>
+                    <div className="flex gap-2">
+                      {/* Mark As Delivered Button */}
+                      <button
+                        onClick={() =>
+                          handleStatusChange(order._id, "Delivered")
+                        }
+                        className="bg-green-500 text-white px-3 py-1.5 rounded hover:bg-green-600 text-sm"
+                      >
+                        Mark As Delivered
+                      </button>
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleDelete(order._id)}
+                        className="bg-red-500 text-white px-3 py-1.5 rounded hover:bg-red-600 text-sm"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

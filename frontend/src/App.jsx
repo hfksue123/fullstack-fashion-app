@@ -18,6 +18,7 @@ import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
 import AddProductPage from "./components/Admin/AddProductPage";
+import SaleProduct from "./components/Products/SaleProduct";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -48,6 +49,7 @@ const App = () => {
             />
             <Route path="order/:id" element={<OrderDetailsPage />} />
             <Route path="my-orders" element={<MyOrdersPage />} />
+            <Route path="/products/sale" element={<SaleProduct />} />
 
           </Route>
           <Route

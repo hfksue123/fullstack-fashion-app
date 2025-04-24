@@ -292,6 +292,57 @@ router.get("/new-arrivals", async (req, res) => {
   }
 });
 
+//@route GET /api/products/sale
+//@desc Get products with sale >= 35%
+//@access Public
+router.get("/sale", async (req, res) => {
+  try {
+    const products = await Product.find();
+
+    const saleProducts = products.filter((product) => {
+      const { price, discountPrice } = product;
+
+      if (
+        typeof discountPrice === "number" &&
+        typeof price === "number" &&
+        discountPrice > price
+      ) {
+        const discountPercentage = Math.floor(
+          ((discountPrice - price) / discountPrice) * 100
+        );
+        return discountPercentage >= 35;
+      }
+      return false;
+    });
+
+    res.json(saleProducts);
+  } catch (error) {
+    console.error("Error fetching sale products:", error.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// Backend: routes/products.js
+// Update stock of products after checkout success
+router.post('/update-stock', async (req, res) => {
+  try {
+    const { items } = req.body; // [{ productId, quantity }]
+
+    for (const item of items) {
+      const product = await Product.findById(item.productId);
+      if (!product) continue;
+
+      product.countInStock = Math.max(product.countInStock - item.quantity, 0);
+      await product.save();
+    }
+
+    res.status(200).json({ message: "Stock updated" });
+  } catch (error) {
+    res.status(500).json({ message: "Lỗi cập nhật tồn kho", error });
+  }
+});
+
+
 //@route GET /api/products/:id
 //@desc Get a single product by ID
 //@access Public
@@ -320,15 +371,17 @@ router.get("/similar/:id", async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
     const similarProducts = await Product.find({
-      _id: { $ne: id }, //Exclude the current product ID
-      gender: product.gender,
+      _id: { $ne: id }, //Choose the products that are not the current product ID
+      gender: { $in: product.gender }, // Choose products with the same gender at least one gender as the current product
       category: product.category,
-    }).limit(4); // Limit to 4 similar products
+    }).limit(4); // Only show 4 similar products
     res.json(similarProducts);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
   }
 });
+
+
 
 module.exports = router;

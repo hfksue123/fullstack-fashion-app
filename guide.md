@@ -16,7 +16,8 @@
 > npm install dayjs
 > npm install react-scroll-parallax
 > npm add react-parallax
-> npm install motion
+> npm install swiper
+
 
 
 - Cấu trúc file Checkout để thanh toán.
@@ -62,7 +63,9 @@
 <!-- Delete Product -->
 - Thêm chức năng delete vào productRoutes.js và tạo 1 DELETE method trên Postman để test. Header tương tự, link tương tự với id là id của product cần xóa, sau khi nhấn Send thì sẽ thấy được 1 thông báo thành công và product đã được xóa khỏi database.
 <!-- seed.js -->
-- Tạo 1 file seed.js trong backend, có tác dụng xóa sạch tất cả user và product hiện có. Sau đs nó sẽ Tạo một user admin mới và gán user là admin vào mỗi sản phẩm. Insert danh sách sản phẩm mẫu vào DB (File trong /backend/data/products.js) và In ra log "Data seeded successfully!" và thoát. Bây giờ vào DB kiểm tra thì sẽ thấy 1 danh sách 20 sản phẩm mới và 1 user admin mới.
+- Tạo 1 file seed.js trong backend, có 2 chức năng là reset toàn bộ data (user,product,order) hoặc update products mới dựa vào file products.js. Sau đs nó sẽ Tạo một user admin mới và gán user là admin vào mỗi sản phẩm. Insert danh sách sản phẩm mẫu vào DB (File trong /backend/data/products.js) và In ra log "Data seeded successfully!" và thoát. Bây giờ vào DB kiểm tra thì sẽ thấy 1 danh sách 20 sản phẩm mới và 1 user admin mới.
+> npm run seed: update thêm sản phẩm mới
+> npm run seed reset: reset data và tạo 1 user admin mới.
 <!-- Filter Products -->
 - Thêm chức năng filter vào productRoutes.js và tạo GET method với tên là All Products. Link là `http://localhost:9000/api/products/?category=Top Wear` sẽ cho ta thấy tất cả các sản phẩm thuộc danh mục Top Wear. Nếu muốn tìm kiếm nhiều thể loại thì thêm & và nhập tên thể loại khác hoặc thêm các key cũng như value tương ứng trong table để Postman auto generate cho mình.
 <!-- Filter Single Product -->
@@ -171,3 +174,20 @@
 > git commit -m "first commit"
 > git branch -M main
 > git push -u origin main
+
+<!-- 11. Cách dùng Redux để fetch dữ liệu -->
+Bước 1: Tạo route backend
+- Trong file productRoutes.js, tạo một route mới /api/products để trả về dữ liệu theo điều kiện mong muốn từ server.
+Bước 2: Tạo Async Thunk và xử lý state
+- Trong file productSlice.js, tạo một async thunk để fetch dữ liệu từ API.
+- Thêm các case xử lý trạng thái trong extraReducers (pending, fulfilled, rejected).
+Bước 3: Gọi dispatch từ component
+- Trong component SaleProduct.jsx, dùng dispatch() để gọi async thunk và lấy dữ liệu về và trả ra UI cho người dùng.
+
+<!-- 12. Missing features -->
+- Tính năng biến thể cho từng color, size cụ thể
+variants: [
+      { size: 'S', color: 'Black', countInStock: 5 },
+      { size: 'S', color: 'White', countInStock: 3 },
+      ...
+    ],
