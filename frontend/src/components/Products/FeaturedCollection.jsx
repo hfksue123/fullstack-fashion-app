@@ -20,7 +20,7 @@ const FeaturedCollection = () => {
           </p>
           <Link
             to="/collections/all"
-            className="bg-darkColor text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-500 hoverEffect"
+            className="bg-darkColor text-white px-6 py-3 text-lg hover:bg-gray-500 hoverEffect"
           >
             Shop Now
           </Link>
@@ -31,7 +31,7 @@ const FeaturedCollection = () => {
           <img
             src={featured}
             alt="Featured Collection"
-            className="w-full h-full object-cover lg:rounded-tr-3xl lg:rounded-br-3xl"
+            className="w-full h-[400px] lg:h-screen object-cover lg:rounded-tr-3xl lg:rounded-br-3xl"
           />
         </div>
       </div>

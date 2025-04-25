@@ -27,7 +27,7 @@ const ProductGrid = ({ products, loading, error }) => {
             >
               {/* Badge giảm giá */}
               {hasDiscount && (
-                <div className="absolute top-1 right-1 bg-red-500 text-white text-[10px] lg:text-xs font-semibold px-1 lg:px-2 lg:py-1 rounded-full z-10">
+                <div className="absolute top-1 right-1 bg-red-500 text-white text-[10px] lg:text-xs font-semibold px-1 lg:px-2 lg:py-1 z-10">
                   -{discountPercent}%
                 </div>
               )}
@@ -35,7 +35,7 @@ const ProductGrid = ({ products, loading, error }) => {
               {/* Out of Stock overlay */}
               {isOutOfStock && (
                 <div className="absolute inset-0 flex items-center justify-center z-20">
-                  <span className="bg-black bg-opacity-80 text-white text-xs lg:text-sm px-3 py-1 rounded-full">
+                  <span className="bg-black bg-opacity-80 text-white text-xs lg:text-sm px-3 py-1">
                     Out of Stock
                   </span>
                 </div>

@@ -142,7 +142,7 @@ const Footer = () => {
               >
                 <div className="flex items-center space-x-4 mb-4">
                   <a
-                    href="#"
+                    href="https://github.com/hfksue123"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-500"
@@ -150,7 +150,7 @@ const Footer = () => {
                     <FaGithub className="h-5 w-5 text-gray-600" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/hfksue123"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-500"
@@ -158,7 +158,7 @@ const Footer = () => {
                     <FaFacebook className="h-5 w-5 text-gray-600" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/hfksue123/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-gray-500"
@@ -185,13 +185,13 @@ const Footer = () => {
       <div className="mx-auto px-4 border-t border-gray-200 pt-6 mt-10">
         <p className="text-gray-400 text-xs text-center">
           &copy; 2025{" "}
+          Designed by{" "}
           <a
             href="https://www.facebook.com/hfksue123"
             className="text-xs text-blue-400"
           >
             Bao Nguyen
-          </a>
-          . All rights reserved. | Data Provided by{" "}
+          </a> | Data Provided by{" "}
           <a href="https://hades.vn/" className="text-xs text-blue-400">
             HADES
           </a>

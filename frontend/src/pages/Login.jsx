@@ -36,14 +36,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex lg:-mt-20">
       <div className="w-full flex md:w-1/2 flex-col justify-center items-center p-8 md:p-12">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm"
         >
           <div className="flex justify-center mb-6">
-            <h2 className="text-xl font-medium">Rabbit</h2>
+            <h2 className="text-sm lg:text-xl font-medium">HFKSUE123</h2>
           </div>
           <h2 className="text-2xl font-bold text-center mb-6">Hey There!</h2>
           <p className="text-center mb-6">
@@ -97,7 +97,7 @@ const Login = () => {
           <img
             src={login}
             alt="Login to Account"
-            className="h-screen w-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>

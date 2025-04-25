@@ -33,7 +33,7 @@ const GenderCollection = () => {
     <section className="pb-10 px-4 lg:px-0">
       <div className="container mx-auto flex flex-row gap-4 lg:gap-8">
         {/* Women's Collection */}
-        <div className="relative flex-1 overflow-hidden rounded-xl shadow-md">
+        <div className="relative flex-1 overflow-hidden shadow-md">
           <img
             src={womensImages[currentIndex]}
             alt="womens collection"
@@ -42,7 +42,7 @@ const GenderCollection = () => {
             }`}
           />
           {/* Overlay */}
-          <div className="absolute bottom-2 lg:bottom-8 left-2 lg:left-8 bg-white/80 backdrop-blur-2xl p-2 lg:p-4 rounded-md shadow-lg">
+          <div className="absolute bottom-2 lg:bottom-8 left-2 lg:left-8 bg-white/80 backdrop-blur-2xl p-2 lg:p-4 shadow-lg">
             <h2 className="text-[10px] lg:text-2xl font-bold text-gray-800 mb-0 lg:mb-3">
               Women Collection
             </h2>
@@ -57,7 +57,7 @@ const GenderCollection = () => {
         </div>
 
         {/* Men's Collection */}
-        <div className="relative flex-1 overflow-hidden rounded-xl shadow-md">
+        <div className="relative flex-1 overflow-hidden shadow-md">
           <img
             src={mensImages[currentIndex]}
             alt="mens collection"
@@ -66,7 +66,7 @@ const GenderCollection = () => {
             }`}
           />
           {/* Overlay */}
-          <div className="absolute bottom-2 lg:bottom-8 left-2 lg:left-8 bg-white/80 backdrop-blur-2xl p-2 lg:p-4 rounded-md shadow-lg">
+          <div className="absolute bottom-2 lg:bottom-8 left-2 lg:left-8 bg-white/80 backdrop-blur-2xl p-2 lg:p-4 shadow-lg">
           <h2 className="text-[10px] lg:text-2xl font-bold text-gray-800 mb-0 lg:mb-3">
               Men Collection
             </h2>

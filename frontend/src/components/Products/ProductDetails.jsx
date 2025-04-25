@@ -16,7 +16,7 @@ const ProductDetails = ({ productId }) => {
     (state) => state.products
   );
   const cartItems = useSelector((state) => state.cart.cart?.products ?? []);
-  
+
   const { user, guestId } = useSelector((state) => state.auth);
 
   const [mainImage, setMainImage] = useState("");
@@ -41,8 +41,12 @@ const ProductDetails = ({ productId }) => {
   }, [selectedProduct]);
 
   const isOutOfStock = selectedProduct?.countInStock === 0;
-  const currentItemInCart = cartItems.find((item) => item.productId === productFetchId);
-  const currentCartQuantity = currentItemInCart ? currentItemInCart.quantity : 0;
+  const currentItemInCart = cartItems.find(
+    (item) => item.productId === productFetchId
+  );
+  const currentCartQuantity = currentItemInCart
+    ? currentItemInCart.quantity
+    : 0;
 
   const handleQuantityChange = (action) => {
     if (isOutOfStock) return;
@@ -61,23 +65,23 @@ const ProductDetails = ({ productId }) => {
       });
       return;
     }
-  
+
     if (isOutOfStock) {
       toast.error("Product is out of stock...", {
         duration: 1500,
       });
       return;
     }
-  
+
     const totalQuantityAfterAdd = currentCartQuantity + quantity;
-  
+
     if (totalQuantityAfterAdd > selectedProduct.countInStock) {
       toast.error(`You have the maximum quantity of this product in cart.`, {
         duration: 1500,
       });
       return;
     }
-  
+
     setIsButtonDisabled(true);
     dispatch(
       addToCart({
@@ -98,7 +102,6 @@ const ProductDetails = ({ productId }) => {
         setIsButtonDisabled(false);
       });
   };
-  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -115,7 +118,7 @@ const ProductDetails = ({ productId }) => {
                   key={index}
                   src={image.url}
                   alt={image.altText || `Thumbnail ${index}`}
-                  className={`w-15 h-15 object-cover rounded-lg cursor-pointer border hoverEffect ${
+                  className={`w-15 h-15 object-cover cursor-pointer border hoverEffect ${
                     mainImage === image.url ? "border-black" : "border-gray-300"
                   }`}
                   onClick={() => setMainImage(image.url)}
@@ -127,7 +130,7 @@ const ProductDetails = ({ productId }) => {
               <img
                 src={mainImage}
                 alt="Main Product"
-                className="w-full lg:h-[700px] object-cover rounded-lg mb-2"
+                className="w-full lg:h-[700px] object-cover mb-2"
               />
             </div>
             {/* Mobile Thumbnails */}
@@ -137,7 +140,7 @@ const ProductDetails = ({ productId }) => {
                   key={index}
                   src={image.url}
                   alt={image.altText || `Thumbnail ${index}`}
-                  className={`w-20 h-20 object-cover rounded-lg cursor-pointer border hoverEffect ${
+                  className={`w-20 h-20 object-cover cursor-pointer border hoverEffect ${
                     mainImage === image.url ? "border-black" : "border-gray-300"
                   }`}
                   onClick={() => setMainImage(image.url)}
@@ -174,7 +177,7 @@ const ProductDetails = ({ productId }) => {
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`w-8 h-8 rounded-full border-2 ${
+                      className={`w-8 h-8 border-2 ${
                         selectedColor === color
                           ? "border-black"
                           : "border-gray-300"
@@ -196,9 +199,9 @@ const ProductDetails = ({ productId }) => {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 rounded border ${
+                      className={`px-4 py-2 border ${
                         selectedSize === size
-                          ? "bg-black text-white border-black"
+                          ? "bg-darkColor text-white"
                           : "border-gray-300"
                       }`}
                     >
@@ -215,7 +218,9 @@ const ProductDetails = ({ productId }) => {
                   <button
                     onClick={() => handleQuantityChange("minus")}
                     className={`px-2 py-1 bg-gray-200 rounded text-lg ${
-                      isOutOfStock || quantity === 1? "opacity-50 cursor-not-allowed" : ""
+                      isOutOfStock || quantity === 1
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                   >
                     -
@@ -241,7 +246,7 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleAddToCart}
                 disabled={isButtonDisabled}
-                className={`bg-darkColor text-white py-2 rounded w-full ${
+                className={`bg-darkColor text-white py-2 w-full ${
                   isButtonDisabled || isOutOfStock
                     ? "bg-gray-900 opacity-50 cursor-not-allowed"
                     : "hover:bg-gray-900"
@@ -283,9 +288,10 @@ const ProductDetails = ({ productId }) => {
 
           {/* Similar Products */}
           <div className="mt-20">
-            <h2 className="text-3xl text-center font-bold mb-4">
-              You May Also Like
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4">
+              YOU MAY ALSO LIKE
             </h2>
+            <div className="h-[2px] w-20 bg-darkColor mx-auto mb-6" />
             <ProductGrid
               products={similarProducts}
               loading={loading}

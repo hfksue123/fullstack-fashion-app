@@ -8,6 +8,7 @@ import FeaturedCollection from "../components/Products/FeaturedCollection";
 import FeaturesSection from "../components/Products/FeaturesSection";
 import ParallaxSection from "../components/Products/ParallaxSection";
 import InfiniteTextMarquee from "../components/Products/InfiniteTextMarquee";
+import Feedback from "../components/Products/FeedBack";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "./../redux/slices/productsSlice";
 import axios from "axios";
@@ -50,7 +51,10 @@ const Home = () => {
       <GenderCollection />
       <NewArrivalsSection />
       {/* Best seller */}
-      <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
+      <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4">
+        BEST SELLER
+      </h2>
+      <div className="h-[1px] w-12 bg-darkColor mx-auto lg:mb-4" />
       {bestSellerProducts ? (
         <ProductDetails productId={bestSellerProducts._id} />
       ) : (
@@ -58,13 +62,15 @@ const Home = () => {
       )}
 
       <div className="container mx-auto mb-6">
-        <h2 className="text-3xl text-center font-bold mb-4">
-          Bottom Wears For Women
-        </h2>
+      <h2 className="text-xl md:text-3xl font-semibold text-center mb-4">
+        BOTTOM WEAR FOR WOMEN
+      </h2>
+      <div className="h-[1px] w-35 bg-darkColor mx-auto mb-6" />
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
       <ParallaxSection />
       <FeaturedCollection />
+      <Feedback />
       <FeaturesSection />
     </div>
   );
