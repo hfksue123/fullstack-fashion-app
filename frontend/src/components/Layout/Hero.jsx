@@ -30,7 +30,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-[400px] md:h-[600px] lg:h-[700px] -mt-20">
+    <section className="relative h-[400px] md:h-[600px] lg:h-screen -mt-20">
       <Swiper
         modules={[Navigation, Autoplay]}
         loop={true}

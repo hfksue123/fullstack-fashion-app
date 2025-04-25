@@ -19,8 +19,6 @@
 > npm add react-parallax
 > npm install swiper
 
-
-
 - Cấu trúc file Checkout để thanh toán.
 
 - Truy cập developer.paypal.com và đăng nhập

@@ -22,7 +22,7 @@ const TopBar = () => {
 
   return (
     <div
-      className={`bg-darkColor text-white overflow-hidden transition-all duration-500 ease-in-out ${
+      className={`bg-darkColor text-white overflow-hidden ${
         visible ? "max-h-20 py-3" : "max-h-0 py-0"
       }`}
     >
@@ -71,7 +71,7 @@ const TopBar = () => {
         {/* Right - Close Button */}
         <button
           onClick={handleClose}
-          className="text-white hover:text-gray-300 transform transition hover:rotate-90 duration-300"
+          className="text-white hover:text-gray-300 transform transition hover:rotate-90 duration-500"
         >
           <IoCloseSharp className="h-5 w-5" />
         </button>

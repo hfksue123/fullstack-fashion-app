@@ -9,11 +9,6 @@ const NewArrivalsSection = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeftStart, setScrollLeftStart] = useState(0);
-  const [dragMoved, setDragMoved] = useState(false);
-
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
@@ -31,65 +26,37 @@ const NewArrivalsSection = () => {
   const updateScrollButtons = () => {
     const container = scrollRef.current;
     if (!container) return;
-
     setCanScrollLeft(container.scrollLeft > 0);
     setCanScrollRight(
-      container.scrollLeft + container.clientWidth < container.scrollWidth - 5
+      container.scrollLeft + container.clientWidth < container.scrollWidth - 1
     );
   };
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
-
     container.addEventListener("scroll", updateScrollButtons);
     updateScrollButtons();
-
-    return () => {
-      container.removeEventListener("scroll", updateScrollButtons);
-    };
+    return () => container.removeEventListener("scroll", updateScrollButtons);
   }, [newArrivals]);
 
   const scroll = (direction) => {
     const container = scrollRef.current;
-    if (!container || !container.firstChild) return;
-
-    const childWidth = container.firstChild.offsetWidth + 20; // 20px = space-x-5
-
-    if (direction === "right") {
-      container.scrollBy({ left: childWidth, behavior: "smooth" });
-    } else {
-      container.scrollBy({ left: -childWidth, behavior: "smooth" });
-    }
-  };
-
-  // === Drag to scroll ===
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.clientX);
-    setScrollLeftStart(scrollRef.current.scrollLeft);
-    setDragMoved(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-
-    const walk = e.clientX - startX;
-    if (Math.abs(walk) > 3) setDragMoved(true);
-    scrollRef.current.scrollLeft = scrollLeftStart - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
+    if (!container) return;
+    const itemWidth = 297 + 4; // item width + gap
+    const scrollAmount = itemWidth; // scroll 4 items
+    container.scrollBy({
+      left: direction === "right" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
   };
 
   return (
     <section id="new-arrivals" className="py-8 px-4 lg:px-0">
-      <div className="container mx-auto text-center mb-6">
+      <div className="mx-auto text-center mb-6">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-2">
           EXPLORE NEW ARRIVALS
         </h2>
-
         <p className="text-lg text-gray-700 mb-2">
           Discover the latest fashion trends and styles in our collection.
         </p>
@@ -99,7 +66,7 @@ const NewArrivalsSection = () => {
           <button
             onClick={() => scroll("left")}
             disabled={!canScrollLeft}
-            className={`p-2 shadow transition ${
+            className={`p-2 rounded transition ${
               canScrollLeft
                 ? "bg-white hover:bg-gray-100 text-black"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -110,7 +77,7 @@ const NewArrivalsSection = () => {
           <button
             onClick={() => scroll("right")}
             disabled={!canScrollRight}
-            className={`p-2 shadow transition ${
+            className={`p-2 rounded transition ${
               canScrollRight
                 ? "bg-white hover:bg-gray-100 text-black"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -124,31 +91,24 @@ const NewArrivalsSection = () => {
       {/* Scrollable container */}
       <div
         ref={scrollRef}
-        className={`container mx-auto flex space-x-5 pb-4 overflow-x-auto scrollbar-hide ${
-          isDragging ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+        className="max-w-[1200px] mx-auto flex gap-[4px] overflow-x-auto scrollbar-hide pb-4"
       >
         {newArrivals.map((product) => (
           <Link
             key={product._id}
             to={`/product/${product._id}`}
-            onClick={(e) => {
-              if (dragMoved) e.preventDefault();
-            }}
-            className="min-w-[200px] sm:min-w-[280px] lg:min-w-[300px] shrink-0 relative overflow-hidden shadow block"
+            className="min-w-[297px] max-w-[297px] shrink-0 relative overflow-hidden shadow block group"
           >
             <img
               src={product.images[0]?.url}
               alt={product.images[0]?.altText || product.name}
-              className="w-full h-[300px] sm:h-[400px] object-cover"
+              className="w-full h-[400px] object-cover transition duration-300 group-hover:scale-105"
               draggable="false"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-3xl text-white p-4">
-              <h4 className="font-semibold text-sm lg:text-base">
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300" />
+            <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-3xl text-white p-3 lg:p-4">
+              <h4 className="font-semibold text-sm lg:text-base truncate">
                 {product.name}
               </h4>
               <p className="text-xs lg:text-base mt-1">${product.price}</p>

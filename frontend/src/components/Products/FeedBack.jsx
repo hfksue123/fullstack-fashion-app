@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import feedback1 from "../../assets/feedback1.jpg";
 import feedback2 from "../../assets/feedback2.jpg";
 import feedback3 from "../../assets/feedback3.jpg";
@@ -6,16 +8,16 @@ import feedback5 from "../../assets/feedback5.jpg";
 import feedback6 from "../../assets/feedback6.jpg";
 import feedback7 from "../../assets/feedback7.jpg";
 
-const HoverImage = ({ src, alt, className = "" }) => {
+const HoverImage = ({ src, alt, className = "", link = "#" }) => {
   return (
-    <div className={`relative group overflow-hidden ${className}`}>
+    <Link to={link} className={`relative group overflow-hidden ${className}`}>
       <img
         src={src}
         alt={alt}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-101"
       />
       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </div>
+    </Link>
   );
 };
 
@@ -27,25 +29,25 @@ const Feedback = () => {
       </h2>
       <div className="h-[2px] w-12 bg-darkColor mx-auto mb-10" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 max-w-7xl mx-auto">
         {/* Cột trái */}
-        <div className="flex flex-col gap-6">
-          <HoverImage src={feedback1} alt="Feedback 1" />
-          <HoverImage src={feedback2} alt="Feedback 2" />
+        <div className="flex flex-col gap-1">
+        <HoverImage src={feedback1} alt="Feedback 1" link="/product/680b0adc1822ca0d7665a1e1" />
+        <HoverImage src={feedback2} alt="Feedback 2" link="/product/680b8f0fe616d65571938ca3" />
         </div>
 
         {/* Cột phải */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-1">
           {/* Ảnh lớn */}
           <HoverImage src={feedback3} alt="Feedback 3" />
 
           {/* Hai ảnh nhỏ nằm ngang */}
-          <div className="flex flex-col gap-6">
-          <div className="flex gap-6">
+          <div className="flex flex-col gap-1">
+          <div className="flex gap-1">
             <HoverImage src={feedback4} alt="Feedback 4" className="w-1/2" />
             <HoverImage src={feedback5} alt="Feedback 5" className="w-1/2" />
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-1">
             <HoverImage src={feedback6} alt="Feedback 6" className="w-1/2" />
             <HoverImage src={feedback7} alt="Feedback 7" className="w-1/2" />
             </div>
