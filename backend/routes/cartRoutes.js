@@ -128,18 +128,36 @@ router.delete('/', async (req, res) => {
   }
 });
 
-// Get cart
+// Get cart with countInStock per product
 router.get('/', async (req, res) => {
   const { userId, guestId } = req.query;
+
   try {
     const cart = await getCart(userId, guestId);
-    if (cart) return res.json(cart);
-    return res.status(404).json({ message: 'Cart not found' });
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    const updatedProducts = await Promise.all(
+      cart.products.map(async (item) => {
+        const product = await Product.findById(item.productId).select("countInStock");
+        return {
+          ...item.toObject(),
+          countInStock: product?.countInStock || 0,
+        };
+      })
+    );
+
+    res.status(200).json({
+      ...cart.toObject(),
+      products: updatedProducts,
+    });
   } catch (err) {
-    console.error(err);
+    console.error('Error fetching cart:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 // Merge guest cart
 router.post('/merge', protect, async (req, res) => {

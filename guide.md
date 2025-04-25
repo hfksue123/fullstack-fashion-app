@@ -12,6 +12,7 @@
 
 > npm install react-icons --save
 > npm install sonner
+> npm install react-toastify
 > npm install react-redux @reduxjs/toolkit axios
 > npm install dayjs
 > npm install react-scroll-parallax
@@ -191,3 +192,7 @@ variants: [
       { size: 'S', color: 'White', countInStock: 3 },
       ...
     ],
+<!-- 13. Toast message -->
+> npm install sooner
+- import vào App.jsx và thêm vào cuối container.
+- 

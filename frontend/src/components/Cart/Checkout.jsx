@@ -28,7 +28,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if (!cart?.products?.length && !isFinalizing) {
-      navigate('/order-confirmation');
+      navigate('/');
     }
   }, [cart, isFinalizing, navigate]);
   

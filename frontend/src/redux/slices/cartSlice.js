@@ -42,7 +42,7 @@ export const addToCart = createAsyncThunk(
       );
       const { countInStock } = productRes.data;
 
-      if (quantity >= countInStock) {
+      if (quantity > countInStock) {
         return rejectWithValue({ message: "Số lượng vượt quá tồn kho" });
       }
 
