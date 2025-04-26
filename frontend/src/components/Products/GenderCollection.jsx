@@ -30,8 +30,8 @@ const GenderCollection = () => {
   }, []);
 
   return (
-    <section className="pb-10 px-4 lg:px-0">
-      <div className="container mx-auto flex flex-row gap-4 lg:gap-8">
+    <section className="pb-10 px-1 lg:px-4">
+      <div className="max-w-screen lg:container lg:mx-auto flex flex-row gap-1 lg:gap-8">
         {/* Women's Collection */}
         <div className="relative flex-1 overflow-hidden shadow-md">
           <img

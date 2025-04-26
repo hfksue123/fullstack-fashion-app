@@ -21,7 +21,7 @@ const ProductGrid = ({ products, loading, error }) => {
         return (
           <Link key={index} to={`/product/${product._id}`} className="block">
             <div
-              className={`relative bg-white p-4 rounded-lg shadow hover:shadow-md transition ${
+              className={`relative bg-white p-4 shadow hover:shadow-md transition ${
                 isOutOfStock ? "opacity-60" : ""
               }`}
             >
@@ -58,7 +58,7 @@ const ProductGrid = ({ products, loading, error }) => {
               </div>
 
               {/* Tên sản phẩm */}
-              <h3 className="text-xs lg:text-sm line-clamp-2 my-2">
+              <h3 className="text-xs lg:text-sm line-clamp-2 my-2 truncate">
                 {product.name}
               </h3>
 

@@ -7,7 +7,7 @@ const InfiniteTextMarquee = () => {
   };
 
   return (
-    <div className="mt-8 lg:mt-0 relative w-full overflow-hidden whitespace-nowrap border-y border-gray-200 py-4 bg-white cursor-pointer">
+    <div className="mt-8 lg:mt-0 relative w-full overflow-hidden whitespace-nowrap py-4 bg-white cursor-pointer">
       <div className="animate-marquee inline-block" onClick={handleClick}>
         {Array.from({ length: 10 }).map((_, index) => (
           <span

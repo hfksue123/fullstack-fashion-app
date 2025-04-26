@@ -66,10 +66,10 @@ const NewArrivalsSection = () => {
           <button
             onClick={() => scroll("left")}
             disabled={!canScrollLeft}
-            className={`p-2 rounded transition ${
+            className={`p-2 transition ${
               canScrollLeft
                 ? "bg-white hover:bg-gray-100 text-black"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : " text-gray-400 cursor-not-allowed"
             }`}
           >
             <FiChevronLeft className="text-2xl" />
@@ -77,10 +77,10 @@ const NewArrivalsSection = () => {
           <button
             onClick={() => scroll("right")}
             disabled={!canScrollRight}
-            className={`p-2 rounded transition ${
+            className={`p-2 transition ${
               canScrollRight
                 ? "bg-white hover:bg-gray-100 text-black"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : " text-gray-400 cursor-not-allowed"
             }`}
           >
             <FiChevronRight className="text-2xl" />

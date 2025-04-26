@@ -73,13 +73,13 @@ const Feedback = () => {
               <HoverImage
                 src={feedback6}
                 alt="Feedback 6"
-                link=""
+                link="/product/680c7ef241e23f504d645db7"
                 className="w-1/2"
               />
               <HoverImage
                 src={feedback7}
                 alt="Feedback 7"
-                link=""
+                link="/product/680c827a41e23f504d6463ed"
                 className="w-1/2"
               />
             </div>

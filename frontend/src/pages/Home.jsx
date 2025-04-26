@@ -62,7 +62,7 @@ const Home = () => {
       )}
 
       <div className="container mx-auto mb-6">
-      <h2 className="text-xl md:text-3xl font-semibold text-center mb-4">
+      <h2 className="text-xl md:text-3xl font-semibold text-center mb-4 px-1">
         BOTTOM WEAR FOR WOMEN
       </h2>
       <div className="h-[1px] w-35 bg-darkColor mx-auto mb-6" />
