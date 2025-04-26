@@ -4,8 +4,8 @@ import featured from "../../assets/featured.webp";
 
 const FeaturedCollection = () => {
   return (
-    <section className="py-10 max-xs:py-0 px-4 lg:px-0">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center">
+    <section className="py-10 max-xs:py-0">
+      <div className="max-w-screen px-1 mx-auto flex flex-col lg:flex-row items-center">
         {/* Left Content */}
         <div className="lg:w-1/2 p-8 text-center lg:text-left">
           <h2 className="text-lg font-semibold text-gray-700">
@@ -31,7 +31,7 @@ const FeaturedCollection = () => {
           <img
             src={featured}
             alt="Featured Collection"
-            className="w-full h-[400px] lg:h-screen object-cover lg:rounded-tr-3xl lg:rounded-br-3xl"
+            className="w-full h-full lg:h-screen object-cover"
           />
         </div>
       </div>

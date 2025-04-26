@@ -1,5 +1,5 @@
 ## <a name="table">Demo Link</a>
-[Demo](https://3d-bao-portfolio.vercel.app/)
+[Demo](https://fullstack-fashion-app.vercel.app/)
 
 ## 📋 <a name="table">Table of Contents</a>
 1. 🤖 [Introduction](#introduction)
@@ -124,7 +124,8 @@ npm run seed reset   # Reset all data & create admin
 Run `seed` to seed the database with sample data (no reset, just seed data with new data you input in the next times). Run `seed reset` to reset the whole database and create an admin account.
 
 **Deployment**
-###### Frontend: push to Github and then deploy to Vercel, link the backend link to the frontend.
+###### Frontend: push to Github and then deploy to Vercel, while deploying to Vercel, you need to paste the backend link to `VITE_BACKEND_URL` because you should use .gitignore to disable the .env file.
+
 ```bash
 cd frontend
 git init
@@ -134,7 +135,8 @@ git commit -m "first commit"
 git branch -M main
 git push -u origin main
 ```
-- ⚠️ Note: with VITE_BACKEND_URL in .env, you need to deploy the backend first to vercel, then get the backend app link to put in this environment variable instead of VITE_BACKEND_URL=9000 as on the local machine. Another small note is to remove the "/" at the end of the link to avoid double "//" errors.
+- ⚠️ Note: with VITE_BACKEND_URL in .env, you need to deploy `/backend` first to `Vercel`, then get the `backend app link` to put in environment variable when deploying `/frontend` onto Vercel instead of VITE_BACKEND_URL=9000 as on the local machine. Another small note is to remove the "/" at the end of the link to avoid double "//" errors.
+
 ###### Backend: push to Vercel
 ```bash
 cd backend
