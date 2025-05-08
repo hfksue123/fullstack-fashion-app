@@ -14,12 +14,20 @@ const HoverImage = ({ src, alt, className = "", link = "#" }) => {
       <img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-101"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      {/* Overlay mờ khi hover */}
+      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+      {/* Chữ hiện khi hover */}
+      <span className="absolute inset-0 z-20 flex items-center justify-center text-white text-lg font-sans opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 transition-all duration-500">
+        View Product
+      </span>
     </Link>
   );
 };
+
 
 const Feedback = () => {
   return (
